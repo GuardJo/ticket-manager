@@ -2,6 +2,14 @@
 
 > 헬스장 이용권 관리 서비스 프로젝트
 
+# 프로젝트 구성 항목
+
+- spring boot 2.7.x
+- java 17
+- spring batch
+- mariaDB ,h2
+- spring data jpa
+
 # 요구 사항
 
 - 이용자는 N개의 이용권 소지 가능
