@@ -1,0 +1,18 @@
+# Use root/example as user/password credentials
+version: '2.10'
+
+services:
+  mariadb:
+    container_name: mariadb_local
+    image: mariadb:11.0-rc
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: "1q2w3e4r!"
+      MARIADB_DATABASE: "ticker-manager"
+      MARIADB_USER: "manager"
+      MARIADB_PASSWORD: "manager1!"
+      TZ: "Asia/Seoul"
+    
