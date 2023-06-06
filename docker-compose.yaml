@@ -7,6 +7,7 @@ services:
     image: mariadb:11.0-rc
     volumes:
       - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/init.d:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
     environment:
