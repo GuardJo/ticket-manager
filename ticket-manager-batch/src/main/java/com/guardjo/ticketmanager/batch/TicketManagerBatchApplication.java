@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
-@EnableBatchProcessing
 @RequiredArgsConstructor
 public class TicketManagerBatchApplication {
     private final JobBuilderFactory jobBuilderFactory;
@@ -35,7 +34,6 @@ public class TicketManagerBatchApplication {
                 .start(testStep())
                 .build();
     }
-
     public static void main(String[] args) {
         SpringApplication.run(TicketManagerBatchApplication.class, args);
     }
