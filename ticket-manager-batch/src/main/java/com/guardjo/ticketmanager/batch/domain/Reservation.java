@@ -17,9 +17,12 @@ public class Reservation extends MetaData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
     private Long id;
+    @Setter
     private int usedCount;
+    @Setter
     @Column(nullable = false)
     private LocalDateTime startedTime;
+    @Setter
     @Column(nullable = false)
     private LocalDateTime finishedTime;
 

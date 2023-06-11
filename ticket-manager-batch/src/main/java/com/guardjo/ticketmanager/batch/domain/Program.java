@@ -16,9 +16,12 @@ public class Program extends MetaData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "program_id")
     private Long id;
+    @Setter
     @Column(length = 100, nullable = false)
     private String name;
+    @Setter
     private Integer count;
+    @Setter
     private Integer expirationPeriod;
 
     @OneToMany(mappedBy = "program", cascade = CascadeType.REMOVE, orphanRemoval = true)

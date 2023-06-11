@@ -17,9 +17,12 @@ public class Ticket extends MetaData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ticket_id")
     private Long id;
+    @Setter
     private int remainingCount;
+    @Setter
     @Column(nullable = false)
     private LocalDateTime startedTime;
+    @Setter
     @Column(nullable = false)
     private LocalDateTime expiredTime;
 
