@@ -12,7 +12,7 @@ services:
       - "3306:3306"
     environment:
       MARIADB_ROOT_PASSWORD: "1q2w3e4r!"
-      MARIADB_DATABASE: "ticker-manager"
+      MARIADB_DATABASE: "ticket-manager"
       MARIADB_USER: "manager"
       MARIADB_PASSWORD: "manager1!"
       TZ: "Asia/Seoul"

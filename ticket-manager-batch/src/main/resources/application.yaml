@@ -1,4 +1,43 @@
+logging:
+  level:
+    com.guardjo.ticketmanager: debug
+    org.hibernate.type.descriptor.sql: trace
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/ticket-manager
+    username: manager
+    password: manager1!
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+  batch:
+    jdbc:
+      initialize-schema: always
+      isolation-level-for-create: default
+---
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:test
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+  config:
+    activate:
+      on-profile: "test"
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  batch:
+    jdbc:
+      initialize-schema: never
