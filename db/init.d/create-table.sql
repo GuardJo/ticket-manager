@@ -1,6 +1,6 @@
 create table member
 (
-    member_id       bigint       not null auto_increment primary key,
+    member_id     bigint       not null auto_increment primary key,
     name          varchar(100) not null,
     status        varchar(50)  not null,
     phone_number  varchar(50),
@@ -21,14 +21,15 @@ create table program
 
 create table ticket
 (
-    ticket_id       bigint    not null auto_increment primary key,
-    member_id         bigint    not null,
-    program_id      bigint    not null,
-    remaining_count int                default 0,
-    started_time    timestamp not null,
-    expired_time    timestamp not null,
-    created_time    timestamp not null default CURRENT_TIMESTAMP,
-    modified_time   timestamp not null default CURRENT_TIMESTAMP,
+    ticket_id       bigint       not null auto_increment primary key,
+    member_id       bigint       not null,
+    program_id      bigint       not null,
+    remaining_count int                   default 0,
+    status          varchar(255) null,
+    started_time    timestamp    not null,
+    expired_time    timestamp    not null,
+    created_time    timestamp    not null default CURRENT_TIMESTAMP,
+    modified_time   timestamp    not null default CURRENT_TIMESTAMP,
     constraint FKd5t3axsm3pj3mt41qhpkmw9yj
         foreign key (member_id) references member (member_id),
     constraint FKliq3sqxtuknpgr7rsmufx5p12
@@ -38,7 +39,7 @@ create table ticket
 create table reservation
 (
     reservation_id bigint    not null auto_increment primary key,
-    member_id        bigint    not null,
+    member_id      bigint    not null,
     ticket_id      bigint    not null,
     used_count     int                default 0,
     started_time   timestamp not null,

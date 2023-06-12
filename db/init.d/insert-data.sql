@@ -18,14 +18,14 @@ values ('tester3', 'ACTIVE', '010-1010-1013', 'test3@mail.com');
 insert into member (name, status, phone_number, email)
 values ('tester4', 'ACTIVE', '010-1010-1014', 'test4@mail.com');
 
-insert into ticket (member_id, program_id, remaining_count, started_time, expired_time)
-values (1, 1, 10, '2023-05-01', '2024-05-01');
-insert into ticket (member_id, program_id, remaining_count, started_time, expired_time)
-values (2, 1, 10, '2023-05-01', '2024-05-01');
-insert into ticket (member_id, program_id, remaining_count, started_time, expired_time)
-values (3, 1, 10, '2023-05-01', '2024-05-01');
-insert into ticket (member_id, program_id, remaining_count, started_time, expired_time)
-values (4, 4, 90, '2023-05-01', '2024-05-01');
+insert into ticket (member_id, program_id, remaining_count, status, started_time, expired_time)
+values (1, 1, 10, 'READY', '2023-05-01', '2024-05-01');
+insert into ticket (member_id, program_id, remaining_count, status, started_time, expired_time)
+values (2, 1, 10, 'READY', '2023-05-01', '2024-05-01');
+insert into ticket (member_id, program_id, remaining_count, status, started_time, expired_time)
+values (3, 1, 10, 'READY', '2023-05-01', '2024-05-01');
+insert into ticket (member_id, program_id, remaining_count, status, started_time, expired_time)
+values (4, 4, 90, 'READY', '2023-05-01', '2024-05-01');
 
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (1, 1, 0, '2023-05-01', '2024-05-01');

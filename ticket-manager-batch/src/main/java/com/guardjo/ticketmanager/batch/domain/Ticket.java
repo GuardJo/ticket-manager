@@ -20,6 +20,9 @@ public class Ticket extends MetaData {
     @Setter
     private int remainingCount;
     @Setter
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
+    @Setter
     @Column(nullable = false)
     private LocalDateTime startedTime;
     @Setter
