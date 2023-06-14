@@ -37,4 +37,7 @@ public class Member extends MetaData{
     @OrderBy("id")
     @ToString.Exclude
     private Collection<Reservation> reservations;
+
+    @ManyToMany(mappedBy = "members")
+    private Collection<MemberGroup> memberGroups;
 }
