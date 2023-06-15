@@ -35,3 +35,14 @@ insert into reservation (member_id, ticket_id, used_count, started_time, finishe
 values (3, 3, 0, '2023-05-01', '2024-05-01');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (4, 2, 0, '2023-05-01', '2024-05-01');
+
+insert into member_group (group_name)
+values ('test group');
+
+insert into member_group_member (member_id, group_id)
+values (1, 1);
+insert into member_group_member (member_id, group_id)
+VALUES (2, 1);
+
+insert into free_ticket (status, group_id, ticket_id)
+VALUES ('MOT_RECEIVE', 1, 1);
