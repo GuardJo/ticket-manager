@@ -23,8 +23,8 @@ public class MemberGroup extends MetaData{
     @ManyToMany
     @JoinTable(
             name = "member_group_member",
-            joinColumns = @JoinColumn(name = "member_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id")
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id")
     )
     private Collection<Member> members;
 }

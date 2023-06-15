@@ -38,6 +38,6 @@ public class Member extends MetaData{
     @ToString.Exclude
     private Collection<Reservation> reservations;
 
-    @ManyToMany(mappedBy = "members")
+    @ManyToMany(mappedBy = "members", cascade = CascadeType.REMOVE)
     private Collection<MemberGroup> memberGroups;
 }

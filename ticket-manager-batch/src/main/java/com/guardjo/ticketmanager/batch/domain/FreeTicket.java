@@ -19,10 +19,10 @@ public class FreeTicket extends MetaData{
     @Enumerated(EnumType.STRING)
     private FreeTicketStatus status = FreeTicketStatus.MOT_RECEIVE;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "group_id")
     private MemberGroup memberGroup;
 }

@@ -85,6 +85,7 @@ class TicketRepositoryTest {
         assertThat(updateTicket.getRemainingCount()).isEqualTo(remainingCount);
     }
 
+    @DisplayName("Ticket 객체 제거 테스트")
     @Test
     void testDeleteTicket() {
         ticketRepository.deleteById(1L);
