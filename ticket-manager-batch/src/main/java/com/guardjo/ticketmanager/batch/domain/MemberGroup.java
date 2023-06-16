@@ -1,6 +1,7 @@
 package com.guardjo.ticketmanager.batch.domain;
 
 import lombok.*;
+import org.springframework.core.annotation.Order;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -20,11 +21,9 @@ public class MemberGroup extends MetaData{
     @Column(nullable = false)
     private String groupName;
 
-    @ManyToMany
-    @JoinTable(
-            name = "member_group_member",
-            joinColumns = @JoinColumn(name = "group_id"),
-            inverseJoinColumns = @JoinColumn(name = "member_id")
-    )
-    private Collection<Member> members;
+    @OneToMany(mappedBy = "group", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OrderBy("id")
+    private Collection<MemberGroupMember> members;
+    @OneToMany(mappedBy = "memberGroup", orphanRemoval = true)
+    private Collection<FreeTicket> freeTickets;
 }

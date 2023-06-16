@@ -37,7 +37,7 @@ public class Member extends MetaData{
     @OrderBy("id")
     @ToString.Exclude
     private Collection<Reservation> reservations;
-
-    @ManyToMany(mappedBy = "members", cascade = CascadeType.REMOVE)
-    private Collection<MemberGroup> memberGroups;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OrderBy("id")
+    private Collection<MemberGroupMember> groups;
 }

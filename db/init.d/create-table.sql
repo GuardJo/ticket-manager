@@ -76,12 +76,15 @@ create table free_ticket
         foreign key (group_id) references member_group (group_id)
 );
 
+-- auto-generated definition
 create table member_group_member
 (
-    member_id bigint not null,
-    group_id  bigint not null,
-    constraint FKbtptcyribcgpcpcxymyq2bu8
-        foreign key (member_id) references member (member_id),
-    constraint FKsensq1xqufe4glohrvpgf4n2f
-        foreign key (group_id) references member_group (group_id)
+    member_group_member_id bigint auto_increment
+        primary key,
+    group_id               bigint null,
+    member_id              bigint null,
+    constraint FKh1c85sw916m4xvj80kwun910
+        foreign key (group_id) references member_group (group_id),
+    constraint FKl3uv5gmqeu3hoi3goc08xq32o
+        foreign key (member_id) references member (member_id)
 );
