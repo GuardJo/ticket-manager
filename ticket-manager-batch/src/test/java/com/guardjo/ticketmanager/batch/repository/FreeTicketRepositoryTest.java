@@ -7,12 +7,16 @@ import com.guardjo.ticketmanager.batch.domain.MemberGroup;
 import com.guardjo.ticketmanager.batch.domain.Ticket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -72,5 +76,21 @@ class FreeTicketRepositoryTest {
         freeTicketRepository.deleteById(freeTicketId);
 
         assertThat(freeTicketRepository.count()).isEqualTo(TEST_DATA_SIZE - 1);
+    }
+
+    @DisplayName("무료 이용권 상태별 목록 조회 테스트")
+    @ParameterizedTest
+    @MethodSource("statusTestData")
+    void testFindByStatus(FreeTicketStatus status, long resultSize) {
+        List<FreeTicket> freeTicketList = freeTicketRepository.findByStatus(status);
+
+        assertThat(freeTicketList.size()).isEqualTo(resultSize);
+    }
+
+    private static Stream<Arguments> statusTestData() {
+        return Stream.of(
+                Arguments.arguments(FreeTicketStatus.MOT_RECEIVE, TEST_DATA_SIZE),
+                Arguments.arguments(FreeTicketStatus.RECEIVED, 0L)
+        );
     }
 }
