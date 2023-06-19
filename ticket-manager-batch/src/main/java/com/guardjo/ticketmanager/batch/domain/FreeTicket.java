@@ -17,7 +17,7 @@ public class FreeTicket extends MetaData{
     private Long id;
     @Setter
     @Enumerated(EnumType.STRING)
-    private FreeTicketStatus status = FreeTicketStatus.MOT_RECEIVE;
+    private FreeTicketStatus status = FreeTicketStatus.NOT_RECEIVE;
 
     @ManyToOne
     @JoinColumn(name = "ticket_id")

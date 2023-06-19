@@ -46,12 +46,12 @@ class FreeTicketBatchTaskletTest {
         Ticket ticket = TestDataGenerator.ticket();
         FreeTicket freeTicket = TestDataGenerator.freeTicket(memberGroup, ticket);
 
-        given(freeTicketRepository.findByStatus(FreeTicketStatus.MOT_RECEIVE)).willReturn(List.of(freeTicket));
+        given(freeTicketRepository.findByStatus(FreeTicketStatus.NOT_RECEIVE)).willReturn(List.of(freeTicket));
     }
 
     @AfterEach
     void tearDown() {
-        then(freeTicketRepository).should().findByStatus(FreeTicketStatus.MOT_RECEIVE);
+        then(freeTicketRepository).should().findByStatus(FreeTicketStatus.NOT_RECEIVE);
     }
 
     @DisplayName("무료 이용궈 일괄 지급 batch 테스트")

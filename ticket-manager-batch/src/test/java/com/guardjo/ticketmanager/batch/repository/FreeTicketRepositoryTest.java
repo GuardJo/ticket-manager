@@ -33,7 +33,7 @@ class FreeTicketRepositoryTest {
     @Test
     void testSaveFreeTicket() {
         FreeTicket expected= FreeTicket.builder()
-                .status(FreeTicketStatus.MOT_RECEIVE)
+                .status(FreeTicketStatus.NOT_RECEIVE)
                 .memberGroup(MemberGroup.builder().id(1L).build())
                 .ticket(Ticket.builder().id(1L).build())
                 .build();
@@ -50,7 +50,7 @@ class FreeTicketRepositoryTest {
 
         // data.sql 참고
         long groupId = 1L;
-        FreeTicketStatus freeTicketStatus = FreeTicketStatus.MOT_RECEIVE;
+        FreeTicketStatus freeTicketStatus = FreeTicketStatus.NOT_RECEIVE;
 
         FreeTicket freeTicket = freeTicketRepository.findById(freeTicketId).orElseThrow();
 
@@ -89,7 +89,7 @@ class FreeTicketRepositoryTest {
 
     private static Stream<Arguments> statusTestData() {
         return Stream.of(
-                Arguments.arguments(FreeTicketStatus.MOT_RECEIVE, TEST_DATA_SIZE),
+                Arguments.arguments(FreeTicketStatus.NOT_RECEIVE, TEST_DATA_SIZE),
                 Arguments.arguments(FreeTicketStatus.RECEIVED, 0L)
         );
     }

@@ -51,4 +51,4 @@ insert into member_group_member (member_id, group_id)
 VALUES (4, 2);
 
 insert into free_ticket (status, group_id, ticket_id)
-VALUES ('MOT_RECEIVE', 1, 1);
+VALUES ('NOT_RECEIVE', 2, 1);

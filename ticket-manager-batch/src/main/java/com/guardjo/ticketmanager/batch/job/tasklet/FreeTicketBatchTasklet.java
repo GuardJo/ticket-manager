@@ -44,7 +44,7 @@ public class FreeTicketBatchTasklet implements Tasklet {
     private List<FreeTicket> getBatchingFreeTicketList() {
         LocalDateTime currentTime = LocalDateTime.now();
 
-        return freeTicketRepository.findByStatus(FreeTicketStatus.MOT_RECEIVE).stream()
+        return freeTicketRepository.findByStatus(FreeTicketStatus.NOT_RECEIVE).stream()
                 .filter(freeTicket -> freeTicket.getTicket().getStartedTime().isBefore(currentTime))
                 .toList();
     }

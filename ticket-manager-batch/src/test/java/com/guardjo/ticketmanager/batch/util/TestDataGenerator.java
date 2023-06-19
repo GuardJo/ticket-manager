@@ -49,7 +49,7 @@ public class TestDataGenerator {
 
     public static FreeTicket freeTicket(MemberGroup memberGroup, Ticket ticket) {
         return FreeTicket.builder()
-                .status(FreeTicketStatus.MOT_RECEIVE)
+                .status(FreeTicketStatus.NOT_RECEIVE)
                 .ticket(ticket)
                 .memberGroup(memberGroup)
                 .build();
