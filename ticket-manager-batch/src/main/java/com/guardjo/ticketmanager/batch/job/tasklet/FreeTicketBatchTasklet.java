@@ -2,6 +2,7 @@ package com.guardjo.ticketmanager.batch.job.tasklet;
 
 import com.guardjo.ticketmanager.batch.domain.*;
 import com.guardjo.ticketmanager.batch.repository.FreeTicketRepository;
+import com.guardjo.ticketmanager.batch.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class FreeTicketBatchTasklet implements Tasklet {
     private final FreeTicketRepository freeTicketRepository;
+    private final TicketRepository ticketRepository;
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
@@ -50,20 +52,27 @@ public class FreeTicketBatchTasklet implements Tasklet {
     }
 
     private Set<Member> getMemberIn(MemberGroup group) {
-        Collection<MemberGroupMember> members = group.getMembers();
-
-        return members.stream()
-                .map(MemberGroupMember::getMember)
-                .collect(Collectors.toSet());
+        return new HashSet<>(group.getMembers());
     }
 
     private void setFreeTicket(Member member, FreeTicket freeTicket) {
-        Ticket ticket = freeTicket.getTicket();
+        Ticket newTicket = newTicket(freeTicket.getTicket(), member);
 
-        if (member.getTickets().contains(ticket)) {
+        if (member.getTickets().contains(newTicket)) {
             log.warn("Already received FreeTicket");
         } else {
-            member.getTickets().add(ticket);
+            ticketRepository.save(newTicket);
         }
+    }
+
+    private Ticket newTicket(Ticket ticketInfo, Member member) {
+        return Ticket.builder()
+                .remainingCount(ticketInfo.getRemainingCount())
+                .status(ticketInfo.getStatus())
+                .startedTime(ticketInfo.getStartedTime())
+                .expiredTime(ticketInfo.getExpiredTime())
+                .member(member)
+                .program(ticketInfo.getProgram())
+                .build();
     }
 }
