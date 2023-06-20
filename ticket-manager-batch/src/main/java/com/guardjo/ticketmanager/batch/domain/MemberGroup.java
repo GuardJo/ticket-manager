@@ -21,9 +21,14 @@ public class MemberGroup extends MetaData{
     @Column(nullable = false)
     private String groupName;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @OrderBy("id")
-    private Collection<MemberGroupMember> members;
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "member_group_member",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id")
+    )
+    private Collection<Member> members;
+
     @OneToMany(mappedBy = "memberGroup", orphanRemoval = true)
     private Collection<FreeTicket> freeTickets;
 }

@@ -21,11 +21,7 @@ public class TestDataGenerator {
     public static MemberGroup memberGroup(String name) {
         return MemberGroup.builder()
                 .groupName("test group")
-                .members(List.of(
-                        MemberGroupMember.builder()
-                                .member(member(1L, "tester"))
-                                .build()
-                ))
+                .members(List.of(member(1L, "tester")))
                 .build();
     }
 

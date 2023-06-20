@@ -29,10 +29,11 @@ public class Ticket extends MetaData {
     @Column(nullable = false)
     private LocalDateTime expiredTime;
 
+    @Setter
     @ManyToOne(optional = false)
     @JoinColumn(name = "member_id")
     private Member member;
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "ticket", orphanRemoval = true)
     @OrderBy("id")
     @ToString.Exclude
     private Collection<Reservation> reservations;
@@ -40,6 +41,6 @@ public class Ticket extends MetaData {
     @JoinColumn(name = "program_id")
     private Program program;
 
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "ticket", orphanRemoval = true)
     private Collection<FreeTicket> freeTickets;
 }

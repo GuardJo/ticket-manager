@@ -47,7 +47,7 @@ class MemberGroupRepositoryTest {
 
         MemberGroup memberGroup = memberGroupRepository.findById(groupId).orElseThrow();
         List<Long> actualMemberIds = memberGroup.getMembers().stream()
-                .map((memberGroupMember -> memberGroupMember.getMember().getId()))
+                .map(Member::getId)
                 .toList();
 
         assertThat(memberGroup.getGroupName()).isEqualTo(groupName);
