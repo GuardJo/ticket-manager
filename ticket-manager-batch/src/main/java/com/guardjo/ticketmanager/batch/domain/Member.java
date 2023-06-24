@@ -37,4 +37,12 @@ public class Member extends MetaData{
     @OrderBy("id")
     @ToString.Exclude
     private Collection<Reservation> reservations;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "member_group_member",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    private Collection<MemberGroup> groups;
 }

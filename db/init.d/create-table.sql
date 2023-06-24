@@ -51,3 +51,40 @@ create table reservation
     constraint FKkn72g30lgqj1a31doyr5qb6ln
         foreign key (ticket_id) references ticket (ticket_id)
 );
+
+create table member_group
+(
+    group_id      bigint auto_increment
+        primary key,
+    group_name    varchar(255) not null,
+    created_time   timestamp not null default CURRENT_TIMESTAMP,
+    modified_time  timestamp not null default CURRENT_TIMESTAMP
+);
+
+create table free_ticket
+(
+    free_ticket_id bigint auto_increment
+        primary key,
+    status         varchar(255) null,
+    group_id       bigint       not null,
+    ticket_id      bigint       not null,
+    created_time   timestamp not null default CURRENT_TIMESTAMP,
+    modified_time  timestamp not null default CURRENT_TIMESTAMP,
+    constraint FKfyu8ksipghxojntd5ol2y0t9g
+        foreign key (ticket_id) references ticket (ticket_id),
+    constraint FKoaumxnmeoevb7ckl3hsn424s5
+        foreign key (group_id) references member_group (group_id)
+);
+
+-- auto-generated definition
+create table member_group_member
+(
+    member_group_member_id bigint auto_increment
+        primary key,
+    group_id               bigint null,
+    member_id              bigint null,
+    constraint FKh1c85sw916m4xvj80kwun910
+        foreign key (group_id) references member_group (group_id),
+    constraint FKl3uv5gmqeu3hoi3goc08xq32o
+        foreign key (member_id) references member (member_id)
+);
