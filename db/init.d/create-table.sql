@@ -88,3 +88,18 @@ create table member_group_member
     constraint FKl3uv5gmqeu3hoi3goc08xq32o
         foreign key (member_id) references member (member_id)
 );
+
+-- auto-generated definition
+create table notification
+(
+    notification_id     bigint auto_increment
+        primary key,
+    created_time        datetime(6)  null,
+    modified_time       datetime(6)  null,
+    cootent             varchar(200) not null,
+    kakao_uuid          varchar(255) not null,
+    notification_status varchar(255) not null,
+    reservation_id      bigint       null,
+    constraint FKs24nj4175mp37khlffo484eok
+        foreign key (reservation_id) references reservation (reservation_id)
+);
