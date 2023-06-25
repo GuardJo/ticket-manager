@@ -22,7 +22,7 @@ class NotificationRepositoryTest {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    private final static long TEST_DATA_SIZE = 2L;
+    private final static long TEST_DATA_SIZE = 4L;
 
     @DisplayName("신규 Notification 저장 테스트")
     @Test

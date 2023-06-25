@@ -26,7 +26,7 @@ public class Notification extends MetaData {
     @Column(name = "kakao_uuid", nullable = false)
     private String kakaoUUID;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 }
