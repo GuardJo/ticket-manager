@@ -50,4 +50,23 @@ public class TestDataGenerator {
                 .memberGroup(memberGroup)
                 .build();
     }
+
+    public static Reservation reservation() {
+        return Reservation.builder()
+                .usedCount(0)
+                .startedTime(LocalDateTime.now())
+                .finishedTime(LocalDateTime.MAX)
+                .member(member(999L, "tester"))
+                .ticket(ticket())
+                .build();
+    }
+
+    public static Notification notification(Reservation reservation) {
+        return Notification.builder()
+                .content("Test Notification")
+                .status(NotificationStatus.NOT_SEND)
+                .kakaoUUID("test-uuid")
+                .reservation(reservation)
+                .build();
+    }
 }
