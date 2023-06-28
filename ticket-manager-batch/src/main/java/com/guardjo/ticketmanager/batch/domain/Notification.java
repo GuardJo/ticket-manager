@@ -17,7 +17,7 @@ public class Notification extends MetaData {
     private long id;
     @Setter
     @Column(length = 200, nullable = false)
-    private String cootent;
+    private String content;
     @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "notification_status", nullable = false)

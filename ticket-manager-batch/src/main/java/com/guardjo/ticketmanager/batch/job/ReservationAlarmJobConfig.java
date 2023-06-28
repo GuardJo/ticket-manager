@@ -67,7 +67,7 @@ public class ReservationAlarmJobConfig {
             } else {
                 return Notification.builder()
                         .status(NotificationStatus.NOT_SEND)
-                        .cootent(String.format("예약하신 %s가 곧 시작됩니다.",
+                        .content(String.format("예약하신 %s가 곧 시작됩니다.",
                                 reservation.getTicket().getProgram().getName()))
                         .kakaoUUID("test") //TODO kakao uuid 가져오는거 추후 추가 예정
                         .reservation(reservation)

@@ -2,12 +2,10 @@ package com.guardjo.ticketmanager.batch.job;
 
 import com.guardjo.ticketmanager.batch.config.TestBatchConfig;
 import com.guardjo.ticketmanager.batch.domain.Member;
-import com.guardjo.ticketmanager.batch.domain.Notification;
 import com.guardjo.ticketmanager.batch.domain.Reservation;
 import com.guardjo.ticketmanager.batch.domain.Ticket;
 import com.guardjo.ticketmanager.batch.repository.NotificationRepository;
 import com.guardjo.ticketmanager.batch.repository.ReservationRepository;
-import com.guardjo.ticketmanager.batch.util.TestDataGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,8 +19,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

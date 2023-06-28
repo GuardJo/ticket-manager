@@ -96,7 +96,7 @@ create table notification
         primary key,
     created_time        datetime(6)  null,
     modified_time       datetime(6)  null,
-    cootent             varchar(200) not null,
+    content             varchar(200) not null,
     kakao_uuid          varchar(255) not null,
     notification_status varchar(255) not null,
     reservation_id      bigint       null,

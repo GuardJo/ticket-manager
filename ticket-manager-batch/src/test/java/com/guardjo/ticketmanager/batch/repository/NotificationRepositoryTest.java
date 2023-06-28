@@ -29,7 +29,7 @@ class NotificationRepositoryTest {
     void testCreateNotification() {
         Notification newNotification = Notification.builder()
                 .status(NotificationStatus.NOT_SEND)
-                .cootent("알림 테스트")
+                .content("알림 테스트")
                 .kakaoUUID("test uuid")
                 .reservation(Reservation.builder().id(1L).build())
                 .build();
@@ -49,7 +49,7 @@ class NotificationRepositoryTest {
         Notification actual = notificationRepository.findById(notificationnId).orElseThrow();
 
         assertThat(actual).isNotNull();
-        assertThat(actual.getCootent()).isEqualTo(expectedContent);
+        assertThat(actual.getContent()).isEqualTo(expectedContent);
     }
 
     @DisplayName("전체 Notification 목록 조회 테스트")
