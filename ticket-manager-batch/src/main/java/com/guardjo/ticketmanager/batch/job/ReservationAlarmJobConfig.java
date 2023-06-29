@@ -3,7 +3,9 @@ package com.guardjo.ticketmanager.batch.job;
 import com.guardjo.ticketmanager.batch.domain.Notification;
 import com.guardjo.ticketmanager.batch.domain.NotificationStatus;
 import com.guardjo.ticketmanager.batch.domain.Reservation;
+import com.guardjo.ticketmanager.batch.job.processor.NotificationSendProcessor;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -15,6 +17,7 @@ import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.persistence.EntityManagerFactory;
 import java.time.LocalDateTime;
@@ -26,6 +29,7 @@ public class ReservationAlarmJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
+    private final WebClient webClient;
 
     private final static int CHUNK_SIZE = 10;
 
@@ -33,6 +37,7 @@ public class ReservationAlarmJobConfig {
     public Job notificationCreateJob() {
         return jobBuilderFactory.get("notificationCreateJob")
                 .start(notificationCreateStep())
+                .next(notificationSendStep())
                 .build();
     }
 
@@ -47,6 +52,16 @@ public class ReservationAlarmJobConfig {
     }
 
     @Bean
+    public Step notificationSendStep() {
+        return stepBuilderFactory.get("notificationSendStep")
+                .<Notification, Notification>chunk(CHUNK_SIZE)
+                .reader(notificationJpaPagingItemReader())
+                .processor(notificationSendProcessor())
+                .writer(notificationJpaItemWriter())
+                .build();
+    }
+
+    @Bean
     public JpaPagingItemReader<Reservation> reservationJpaPagingItemReader() {
         return new JpaPagingItemReaderBuilder<Reservation>()
                 .name("reservationJpaPagingItemReader")
@@ -55,6 +70,17 @@ public class ReservationAlarmJobConfig {
                 .parameterValues(Map.of(
                         "startedTime", LocalDateTime.now().plusMinutes(10) // 10분 뒤 시작하는 예약
                 ))
+                .pageSize(CHUNK_SIZE)
+                .build();
+    }
+
+    @Bean
+    public JpaPagingItemReader<Notification> notificationJpaPagingItemReader() {
+        return new JpaPagingItemReaderBuilder<Notification>()
+                .name("notificationJpaPagingItemReader")
+                .entityManagerFactory(entityManagerFactory)
+                .queryString("select n from Notification n where n.status = :status")
+                .parameterValues(Map.of("status", NotificationStatus.NOT_SEND))
                 .pageSize(CHUNK_SIZE)
                 .build();
     }
@@ -74,6 +100,11 @@ public class ReservationAlarmJobConfig {
                         .build();
             }
         });
+    }
+
+    @Bean
+    public ItemProcessor<Notification, Notification> notificationSendProcessor() {
+        return new NotificationSendProcessor(webClient);
     }
 
     @Bean

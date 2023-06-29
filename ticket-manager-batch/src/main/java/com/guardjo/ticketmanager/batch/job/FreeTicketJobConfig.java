@@ -27,7 +27,6 @@ public class FreeTicketJobConfig {
     public Step freeTicketStep() {
         return stepBuilderFactory.get("freeTicketStep")
                 .tasklet(freeTicketBatchTasklet)
-                .allowStartIfComplete(true)
                 .build();
     }
 }

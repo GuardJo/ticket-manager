@@ -1,8 +1,6 @@
 package com.guardjo.ticketmanager.batch.job.processor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.guardjo.ticketmanager.batch.config.KakaoApiProperty;
 import com.guardjo.ticketmanager.batch.domain.Notification;
 import com.guardjo.ticketmanager.batch.domain.NotificationStatus;
 import com.guardjo.ticketmanager.batch.model.constant.KakaoApiConstants;
@@ -15,10 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
-import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
