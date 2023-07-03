@@ -1,20 +1,27 @@
 package com.guardjo.ticketmanager.batch.job;
 
+import com.guardjo.ticketmanager.batch.config.KakaoApiProperty;
+import com.guardjo.ticketmanager.batch.config.KakaoConfig;
 import com.guardjo.ticketmanager.batch.config.TestBatchConfig;
+import com.guardjo.ticketmanager.batch.config.TestWebClientConfig;
 import com.guardjo.ticketmanager.batch.domain.Member;
 import com.guardjo.ticketmanager.batch.domain.Reservation;
 import com.guardjo.ticketmanager.batch.domain.Ticket;
+import com.guardjo.ticketmanager.batch.job.processor.NotificationSendProcessor;
 import com.guardjo.ticketmanager.batch.repository.NotificationRepository;
 import com.guardjo.ticketmanager.batch.repository.ReservationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobInstance;
 import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -25,7 +32,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @ActiveProfiles("test")
 @SpringBatchTest
 @SpringBootTest
-@ContextConfiguration(classes = {TestBatchConfig.class, ReservationAlarmJobConfig.class})
+@ContextConfiguration(classes = {
+        ReservationAlarmJobConfig.class,
+        TestBatchConfig.class,
+        NotificationSendProcessor.class,
+        TestWebClientConfig.class
+})
 class ReservationAlarmJobConfigTest {
     @Autowired
     private JobLauncherTestUtils jobLauncherTestUtils;
