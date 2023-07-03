@@ -5,7 +5,6 @@ import com.guardjo.ticketmanager.batch.domain.NotificationStatus;
 import com.guardjo.ticketmanager.batch.domain.Reservation;
 import com.guardjo.ticketmanager.batch.job.processor.NotificationSendProcessor;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -17,7 +16,6 @@ import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.persistence.EntityManagerFactory;
 import java.time.LocalDateTime;
@@ -29,7 +27,7 @@ public class ReservationAlarmJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
-    private final WebClient webClient;
+    private final NotificationSendProcessor notificationSendProcessor;
 
     private final static int CHUNK_SIZE = 10;
 
@@ -56,7 +54,7 @@ public class ReservationAlarmJobConfig {
         return stepBuilderFactory.get("notificationSendStep")
                 .<Notification, Notification>chunk(CHUNK_SIZE)
                 .reader(notificationJpaPagingItemReader())
-                .processor(notificationSendProcessor())
+                .processor(notificationSendProcessor)
                 .writer(notificationJpaItemWriter())
                 .build();
     }
@@ -100,11 +98,6 @@ public class ReservationAlarmJobConfig {
                         .build();
             }
         });
-    }
-
-    @Bean
-    public ItemProcessor<Notification, Notification> notificationSendProcessor() {
-        return new NotificationSendProcessor(webClient);
     }
 
     @Bean
