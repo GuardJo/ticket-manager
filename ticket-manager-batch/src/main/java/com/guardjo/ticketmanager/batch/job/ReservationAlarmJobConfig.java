@@ -10,12 +10,17 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.database.JpaCursorItemReader;
 import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.batch.item.database.JpaPagingItemReader;
+import org.springframework.batch.item.database.builder.JpaCursorItemReaderBuilder;
 import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
+import org.springframework.batch.item.support.SynchronizedItemStreamReader;
+import org.springframework.batch.item.support.builder.SynchronizedItemStreamReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 import javax.persistence.EntityManagerFactory;
 import java.time.LocalDateTime;
@@ -56,6 +61,7 @@ public class ReservationAlarmJobConfig {
                 .reader(notificationJpaPagingItemReader())
                 .processor(notificationSendProcessor)
                 .writer(notificationJpaItemWriter())
+                .taskExecutor(new SimpleAsyncTaskExecutor())
                 .build();
     }
 
@@ -73,14 +79,15 @@ public class ReservationAlarmJobConfig {
     }
 
     @Bean
-    public JpaPagingItemReader<Notification> notificationJpaPagingItemReader() {
-        return new JpaPagingItemReaderBuilder<Notification>()
+    public SynchronizedItemStreamReader<Notification> notificationJpaPagingItemReader() {
+        JpaCursorItemReader<Notification> jpaCursorItemReader = new JpaCursorItemReaderBuilder<Notification>()
                 .name("notificationJpaPagingItemReader")
                 .entityManagerFactory(entityManagerFactory)
                 .queryString("select n from Notification n where n.status = :status")
                 .parameterValues(Map.of("status", NotificationStatus.NOT_SEND))
-                .pageSize(CHUNK_SIZE)
                 .build();
+
+        return new SynchronizedItemStreamReaderBuilder<Notification>().delegate(jpaCursorItemReader).build();
     }
 
     @Bean
@@ -93,7 +100,7 @@ public class ReservationAlarmJobConfig {
                         .status(NotificationStatus.NOT_SEND)
                         .content(String.format("예약하신 %s가 곧 시작됩니다.",
                                 reservation.getTicket().getProgram().getName()))
-                        .kakaoUUID("test") //TODO kakao uuid 가져오는거 추후 추가 예정
+                        .kakaoUUID("KAKAO-UUID") //TODO kakao uuid 가져오는거 추후 추가 예정
                         .reservation(reservation)
                         .build();
             }
