@@ -28,13 +28,13 @@ insert into ticket (member_id, program_id, remaining_count, status, started_time
 values (4, 4, 90, 'READY', '2023-05-01', '2024-05-01');
 
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
-values (1, 1, 0, '2023-05-01', '2024-05-01');
+values (1, 1, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
-values (2, 2, 0, '2023-05-01', '2024-05-01');
+values (2, 2, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
-values (3, 3, 0, '2023-05-01', '2024-05-01');
+values (3, 3, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
-values (4, 2, 0, '2023-05-01', '2024-05-01');
+values (4, 2, 0, '2023-05-01', '2023-05-02');
 
 insert into member_group (group_name)
 values ('test group');
