@@ -32,4 +32,7 @@ public class Reservation extends MetaData {
     @ManyToOne(optional = false)
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;
+
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.REMOVE)
+    private Notification notification;
 }

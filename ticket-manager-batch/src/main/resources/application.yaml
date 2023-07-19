@@ -20,6 +20,9 @@ spring:
     jdbc:
       initialize-schema: always
       isolation-level-for-create: default
+kakao-api:
+  host: "https://kapi.kakao.com"
+  access-token: ${KAKAO_ACCESS_KEY}
 ---
 spring:
   datasource:

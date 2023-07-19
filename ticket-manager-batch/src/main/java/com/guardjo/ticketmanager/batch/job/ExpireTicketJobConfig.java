@@ -75,6 +75,5 @@ public class ExpireTicketJobConfig {
         return new JpaItemWriterBuilder<Ticket>()
                 .entityManagerFactory(entityManagerFactory)
                 .build();
-
     }
 }

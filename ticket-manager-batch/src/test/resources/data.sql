@@ -52,3 +52,12 @@ VALUES (4, 2);
 
 insert into free_ticket (status, group_id, ticket_id)
 VALUES ('NOT_RECEIVE', 1, 1);
+
+insert into notification (content, kakao_uuid, notification_status, reservation_id)
+values ('Test Notification1', 'kakao-test-uuid1', 'NOT_SEND', 1);
+insert into notification (content, kakao_uuid, notification_status, reservation_id)
+values ('Test Notification2', 'kakao-test-uuid2', 'NOT_SEND', 2);
+insert into notification (content, kakao_uuid, notification_status, reservation_id)
+values ('Test Notification3', 'kakao-test-uuid3', 'NOT_SEND', 3);
+insert into notification (content, kakao_uuid, notification_status, reservation_id)
+values ('Test Notification4', 'kakao-test-uuid4', 'NOT_SEND', 4);
