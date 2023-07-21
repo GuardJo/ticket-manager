@@ -34,7 +34,7 @@ values (2, 2, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (3, 3, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
-values (4, 2, 0, '2023-05-01', '2023-05-02');
+values (4, 4, 0, '2023-05-01', '2023-05-02');
 
 insert into member_group (group_name)
 values ('test group');
