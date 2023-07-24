@@ -10,6 +10,8 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.integration.async.AsyncItemProcessor;
+import org.springframework.batch.integration.async.AsyncItemWriter;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JpaCursorItemReader;
@@ -17,10 +19,12 @@ import org.springframework.batch.item.database.builder.JpaCursorItemReaderBuilde
 import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
 
 import javax.persistence.EntityManagerFactory;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 @Configuration
 @RequiredArgsConstructor
@@ -43,10 +47,10 @@ public class FinishReservationJobConfig {
     @Bean
     public Step finishedReservationStep() {
         return stepBuilderFactory.get("finishedReservationStep")
-                .<Reservation, Ticket> chunk(CHUNK_SIZE)
+                .<Reservation, Future<Ticket>> chunk(CHUNK_SIZE)
                 .reader(finishedReservationReader())
-                .processor(finishedReservationProcessor())
-                .writer(updateTicketWriter())
+                .processor(asyncFinishedReservationProcessor())
+                .writer(asyncUpdateTicketWriter())
                 .build();
     }
 
@@ -61,6 +65,15 @@ public class FinishReservationJobConfig {
                         "where r.finishedTime < :finishedTime")
                 .parameterValues(Map.of("finishedTime", LocalDateTime.now()))
                 .build();
+    }
+
+    @Bean
+    public AsyncItemProcessor<Reservation, Ticket> asyncFinishedReservationProcessor() {
+        AsyncItemProcessor<Reservation, Ticket> asyncItemProcessor = new AsyncItemProcessor<>();
+        asyncItemProcessor.setDelegate(finishedReservationProcessor());
+        asyncItemProcessor.setTaskExecutor(new SimpleAsyncTaskExecutor());
+
+        return asyncItemProcessor;
     }
 
     @Bean
@@ -79,6 +92,14 @@ public class FinishReservationJobConfig {
 
             return ticket;
         };
+    }
+
+    @Bean
+    public AsyncItemWriter<Ticket> asyncUpdateTicketWriter() {
+        AsyncItemWriter<Ticket> asyncItemWriter = new AsyncItemWriter<>();
+        asyncItemWriter.setDelegate(updateTicketWriter());
+
+        return asyncItemWriter;
     }
 
     @Bean
