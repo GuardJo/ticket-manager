@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.free_ticket</OriginalElement>
+  <nodes>
+    <node x="-1359.5168592964826" y="-0.0480804020100436">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member</node>
+    <node x="-878.7664924623116" y="-0.048080402009986756">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.reservation</node>
+    <node x="-1359.5168592964826" y="404.4089246231155">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.program</node>
+    <node x="-1763.5884422110555" y="449.05809045226135">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member_group_member</node>
+    <node x="-553.7994773869345" y="-0.04808040201010044">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.notification</node>
+    <node x="-878.7664924623116" y="724.8898894472362">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.free_ticket</node>
+    <node x="-878.7664924623116" y="404.4089246231155">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.ticket</node>
+    <node x="-569.2994773869345" y="415.50311557788933">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.reservation_history</node>
+    <node x="-1361.0168592964828" y="724.8898894472362">c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member_group</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.ticket" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member" relationship="REFERENCES">
+      <point x="-49.25" y="-128.0" />
+      <point x="-829.5164924623116" y="293.03610050251257" />
+      <point x="-1255.0168592964826" y="293.03610050251257" />
+      <point x="0.0" y="104.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.reservation" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member" relationship="REFERENCES">
+      <point x="-49.25" y="-116.0" />
+      <point x="-829.5164924623116" y="103.95191959798996" />
+      <point x="-1255.0168592964826" y="103.95191959798996" />
+      <point x="0.0" y="104.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.free_ticket" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.ticket" relationship="REFERENCES">
+      <point x="-49.25" y="-92.0" />
+      <point x="-829.5164924623116" y="474.0" />
+      <point x="-780.2664924623116" y="474.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.free_ticket" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member_group" relationship="REFERENCES">
+      <point x="49.25" y="-92.0" />
+      <point x="-731.0164924623116" y="805.4389547738695" />
+      <point x="-1261.0168592964828" y="805.4389547738695" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member_group_member" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member" relationship="REFERENCES">
+      <point x="69.5" y="-56.0" />
+      <point x="-1555.0884422110555" y="171.0" />
+      <point x="-1255.0168592964826" y="171.0" />
+      <point x="0.0" y="104.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.notification" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.reservation" relationship="REFERENCES">
+      <point x="0.0" y="-104.0" />
+      <point x="-430.79947738693454" y="95.50886432160803" />
+      <point x="-780.2664924623116" y="95.50886432160803" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member_group_member" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.member_group" relationship="REFERENCES">
+      <point x="66.70478391959819" y="61.68952763819095" />
+      <point x="-1557.8836582914573" y="792.8898894472362" />
+      <point x="-1261.0168592964828" y="792.8898894472362" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.reservation" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.ticket" relationship="REFERENCES">
+      <point x="49.25" y="-116.0" />
+      <point x="-731.0164924623116" y="474.0" />
+      <point x="-780.2664924623116" y="474.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.ticket" target="c7a01149-074d-4d69-8cc5-ad8418a82b75.TABLE:ticket-manager.program" relationship="REFERENCES">
+      <point x="49.25" y="-128.0" />
+      <point x="-731.0164924623116" y="511.8537889447236" />
+      <point x="-1261.0168592964826" y="511.8537889447236" />
+      <point x="0.0" y="92.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7279569892473118" showDependencies="false" x="-1028.0" y="454.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

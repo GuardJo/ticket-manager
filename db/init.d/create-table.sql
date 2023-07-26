@@ -103,3 +103,20 @@ create table notification
     constraint FKs24nj4175mp37khlffo484eok
         foreign key (reservation_id) references reservation (reservation_id)
 );
+
+create table reservation_history
+(
+    reservation_history_id       bigint auto_increment
+        primary key,
+    history_date                 timestamp     not null,
+    total_new_reservation_count  int default 0 not null,
+    total_reservation_used_count int default 0 not null,
+    created_time   timestamp not null default CURRENT_TIMESTAMP,
+    modified_time  timestamp not null default CURRENT_TIMESTAMP
+)
+    comment '이용 현황';
+
+create index reservation_history_reservation_history_id_history_date_index
+    on reservation_history (reservation_history_id, history_date);
+
+
