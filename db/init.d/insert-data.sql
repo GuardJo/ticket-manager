@@ -52,3 +52,18 @@ VALUES (4, 2);
 
 insert into free_ticket (status, group_id, ticket_id)
 VALUES ('NOT_RECEIVE', 2, 1);
+
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-24', 1, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-25', 1, 2);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-26', 2, 3);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-27', 3, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-28', 3, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-29', 3, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-30', 0, 0);
