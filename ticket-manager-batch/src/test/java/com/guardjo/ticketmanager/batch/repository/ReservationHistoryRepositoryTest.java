@@ -4,6 +4,9 @@ import com.guardjo.ticketmanager.batch.config.JpaConfig;
 import com.guardjo.ticketmanager.batch.domain.ReservationHistory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
@@ -13,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -62,6 +66,17 @@ class ReservationHistoryRepositoryTest {
                 .hasFieldOrPropertyWithValue("historyDate", expectedDate);
     }
 
+    @DisplayName("특정 historyDate에 해당하는 ReservationHistory 존재 여부 반환 테스트")
+    @ParameterizedTest
+    @MethodSource("initDataOfHistoryDate")
+    void testExistsHistoryDate(String date, boolean expected) {
+        LocalDateTime today = LocalDate.parse(date).atStartOfDay();
+
+        boolean actual = reservationHistoryRepository.existsByHistoryDate(today);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
     @DisplayName("ReservationHistory 전체 목록 조회 테스트")
     @Test
     void testFindAllReservationHistories() {
@@ -90,5 +105,12 @@ class ReservationHistoryRepositoryTest {
         reservationHistoryRepository.deleteById(1L);
 
         assertThat(reservationHistoryRepository.count()).isEqualTo(TEST_DATA_SIZE - 1);
+    }
+
+    static Stream<Arguments> initDataOfHistoryDate() {
+        return Stream.of(
+                Arguments.arguments("2023-04-24", true),
+                Arguments.arguments("2020-02-02", false)
+        );
     }
 }
