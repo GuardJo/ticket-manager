@@ -30,6 +30,10 @@ values (4, 4, 90, 'READY', '2023-05-01', '2024-05-01');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (1, 1, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
+values (1, 1, 0, '2023-05-02', '2023-05-03');
+insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
+values (2, 2, 0, '2023-05-02', '2023-05-03');
+insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (2, 2, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (3, 3, 0, '2023-05-01', '2023-05-02');

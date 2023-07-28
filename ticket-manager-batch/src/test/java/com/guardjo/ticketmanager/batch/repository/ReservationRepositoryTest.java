@@ -11,7 +11,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -23,7 +25,7 @@ class ReservationRepositoryTest {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    private final static long TEST_DATA_SIZE = 4L;
+    private final static long TEST_DATA_SIZE = 6L;
 
     @DisplayName("신규 Reservation 저장 테스트")
     @Test
@@ -61,6 +63,19 @@ class ReservationRepositoryTest {
         assertThat(reservation.getUsedCount()).isEqualTo(usedCount);
         assertThat(reservation.getTicket().getProgram().getName()).isEqualTo(prgramName);
         assertThat(reservation.getMember().getName()).isEqualTo(memberName);
+    }
+
+    @DisplayName("특정 기간대의 Revision 객체 목록 조회 테스트")
+    @Test
+    void testFindAllReservationStartDateBetweenFinishDate() {
+        LocalDateTime finishDate = LocalDate.parse("2023-05-03", DateTimeFormatter.ISO_LOCAL_DATE).atStartOfDay();
+        LocalDateTime startDate = finishDate.minusDays(1L);
+        long expectedCount = 2L; // data.sql 내 데이터 기반
+
+        List<Reservation> actual = reservationRepository
+                .findAllByStartedTimeGreaterThanEqualAndFinishedTimeLessThanEqual(startDate, finishDate);
+        
+        assertThat(actual.size()).isEqualTo(expectedCount);
     }
 
     @DisplayName("전체 Reservation 객체 조회 테스트")
