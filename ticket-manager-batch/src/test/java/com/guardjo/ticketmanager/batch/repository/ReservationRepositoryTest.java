@@ -1,20 +1,29 @@
 package com.guardjo.ticketmanager.batch.repository;
 
 import com.guardjo.ticketmanager.batch.config.JpaConfig;
+import com.guardjo.ticketmanager.batch.config.TestJpaConfig;
 import com.guardjo.ticketmanager.batch.domain.Member;
 import com.guardjo.ticketmanager.batch.domain.Reservation;
 import com.guardjo.ticketmanager.batch.domain.Ticket;
+import com.guardjo.ticketmanager.batch.util.TestDataGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -30,24 +39,14 @@ class ReservationRepositoryTest {
     @DisplayName("신규 Reservation 저장 테스트")
     @Test
     void testCreateReservation() {
-        Member member = Member.builder().id(1L).build();
-        Ticket ticket = Ticket.builder().id(1L).build();
+        Reservation expected = createNewReservation();
 
-        Reservation newReservation = Reservation
-                .builder()
-                .usedCount(0)
-                .startedTime(LocalDateTime.now())
-                .finishedTime(LocalDateTime.MAX)
-                .member(member)
-                .ticket(ticket)
-                .build();
-
-        Reservation actual = reservationRepository.save(newReservation);
+        Reservation actual = reservationRepository.save(expected);
 
         assertThat(actual)
-                .hasFieldOrPropertyWithValue("usedCount", newReservation.getUsedCount())
-                .hasFieldOrPropertyWithValue("startedTime", newReservation.getStartedTime())
-                .hasFieldOrPropertyWithValue("finishedTime", newReservation.getFinishedTime());
+                .hasFieldOrPropertyWithValue("usedCount", expected.getUsedCount())
+                .hasFieldOrPropertyWithValue("startedTime", expected.getStartedTime())
+                .hasFieldOrPropertyWithValue("finishedTime", expected.getFinishedTime());
     }
 
     @DisplayName("특정 Reservation 객체 조회 테스트")
@@ -76,6 +75,24 @@ class ReservationRepositoryTest {
                 .findAllByStartedTimeGreaterThanEqualAndFinishedTimeLessThanEqual(startDate, finishDate);
         
         assertThat(actual.size()).isEqualTo(expectedCount);
+    }
+
+    @DisplayName("지정된 날짜에 생성된 Reservation 목록 조회 테스트")
+    @ParameterizedTest
+    @MethodSource("initTodayNewReservations")
+    void testFindAllTodayNewReservations(List<Reservation> reservations) {
+        LocalDate today = LocalDate.now();
+        LocalDate next = today.plusDays(1L);
+        LocalDateTime from = today.atStartOfDay();
+        LocalDateTime to = next.atStartOfDay();
+        int expectedSize = reservations.size();
+
+        reservationRepository.saveAll(reservations);
+        reservationRepository.flush();
+
+        List<Reservation> actual = reservationRepository.findAllByTodayNewReservations(from, to);
+
+        assertThat(actual.size()).isEqualTo(expectedSize);
     }
 
     @DisplayName("전체 Reservation 객체 조회 테스트")
@@ -107,5 +124,30 @@ class ReservationRepositoryTest {
         reservationRepository.deleteById(1L);
 
         assertThat(reservationRepository.count()).isEqualTo(TEST_DATA_SIZE - 1);
+    }
+
+    static Stream<Arguments> initTodayNewReservations() {
+        List<Reservation> reservations = List.of(
+                createNewReservation(),
+                createNewReservation()
+        );
+
+        return Stream.of(
+                Arguments.arguments(reservations)
+        );
+    }
+
+    private static Reservation createNewReservation() {
+        Member member = Member.builder().id(1L).build();
+        Ticket ticket = Ticket.builder().id(1L).build();
+
+        return Reservation
+                .builder()
+                .usedCount(0)
+                .startedTime(LocalDateTime.now())
+                .finishedTime(LocalDateTime.MAX)
+                .member(member)
+                .ticket(ticket)
+                .build();
     }
 }
