@@ -33,7 +33,7 @@ class FinishReservationJobConfigTest {
     private ReservationRepository reservationRepository;
 
     private final static String JOB_NAME = "finishedReservationJob";
-    private final static long TEST_DATA_SIZE = 4L; // TEST DB 내 Reservation 수
+    private final static long TEST_DATA_SIZE = 6L; // TEST DB 내 Reservation 수
     private final static long TICKET_UPDATE_SIZE = 3L; // TEST DB 중 ticket의 remaining_count가 10개인 데이터 수
 
     @DisplayName("티켓 및 예약 차감 Job 테스트")

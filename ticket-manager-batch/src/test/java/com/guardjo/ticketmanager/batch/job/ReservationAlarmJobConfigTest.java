@@ -46,7 +46,7 @@ class ReservationAlarmJobConfigTest {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    private final static int TEST_SIZE = 4;
+    private final static int TEST_SIZE = 6;
     private final static String TEST_JOB_NAME = "notificationCreateJob";
 
     @BeforeEach
@@ -63,8 +63,8 @@ class ReservationAlarmJobConfigTest {
                     .usedCount(0)
                     .startedTime(afterTenMinutes)
                     .finishedTime(LocalDateTime.MAX)
-                    .member(Member.builder().id(i + 1L).build())
-                    .ticket(Ticket.builder().id(i + 1L).build())
+                    .member(Member.builder().id(1L).build())
+                    .ticket(Ticket.builder().id(1L).build())
                     .build();
 
             reservationRepository.save(reservation);

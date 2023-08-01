@@ -57,8 +57,8 @@ create table member_group
     group_id      bigint auto_increment
         primary key,
     group_name    varchar(255) not null,
-    created_time   timestamp not null default CURRENT_TIMESTAMP,
-    modified_time  timestamp not null default CURRENT_TIMESTAMP
+    created_time  timestamp    not null default CURRENT_TIMESTAMP,
+    modified_time timestamp    not null default CURRENT_TIMESTAMP
 );
 
 create table free_ticket
@@ -68,8 +68,8 @@ create table free_ticket
     status         varchar(255) null,
     group_id       bigint       not null,
     ticket_id      bigint       not null,
-    created_time   timestamp not null default CURRENT_TIMESTAMP,
-    modified_time  timestamp not null default CURRENT_TIMESTAMP,
+    created_time   timestamp    not null default CURRENT_TIMESTAMP,
+    modified_time  timestamp    not null default CURRENT_TIMESTAMP,
     constraint FKfyu8ksipghxojntd5ol2y0t9g
         foreign key (ticket_id) references ticket (ticket_id),
     constraint FKoaumxnmeoevb7ckl3hsn424s5
@@ -108,11 +108,11 @@ create table reservation_history
 (
     reservation_history_id       bigint auto_increment
         primary key,
-    history_date                 timestamp     not null,
-    total_new_reservation_count  int default 0 not null,
-    total_reservation_used_count int default 0 not null,
-    created_time   timestamp not null default CURRENT_TIMESTAMP,
-    modified_time  timestamp not null default CURRENT_TIMESTAMP
+    history_date                 date      not null,
+    total_new_reservation_count  int                default 0 not null,
+    total_reservation_used_count int                default 0 not null,
+    created_time                 timestamp not null default CURRENT_TIMESTAMP,
+    modified_time                timestamp not null default CURRENT_TIMESTAMP
 )
     comment '이용 현황';
 

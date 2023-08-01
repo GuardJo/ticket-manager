@@ -3,7 +3,7 @@ package com.guardjo.ticketmanager.batch.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "reservation_history")
@@ -17,7 +17,7 @@ public class ReservationHistory extends MetaData{
     @Column(name = "reservation_history_id")
     private Long id;
     @Column(unique = true, nullable = false)
-    private LocalDateTime historyDate;
+    private LocalDate historyDate;
     @Setter
     @Column
     private int totalNewReservationCount = 0;

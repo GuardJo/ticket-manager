@@ -1,11 +1,9 @@
 package com.guardjo.ticketmanager.batch.repository;
 
 import com.guardjo.ticketmanager.batch.config.JpaConfig;
-import com.guardjo.ticketmanager.batch.config.TestJpaConfig;
 import com.guardjo.ticketmanager.batch.domain.Member;
 import com.guardjo.ticketmanager.batch.domain.Reservation;
 import com.guardjo.ticketmanager.batch.domain.Ticket;
-import com.guardjo.ticketmanager.batch.util.TestDataGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,14 +12,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 

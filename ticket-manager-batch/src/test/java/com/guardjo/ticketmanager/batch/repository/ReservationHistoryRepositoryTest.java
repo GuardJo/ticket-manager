@@ -32,7 +32,7 @@ class ReservationHistoryRepositoryTest {
     @DisplayName("신규 ReservationHistory 저장 테스트")
     @Test
     void testCreateReservationHistory() {
-        LocalDateTime current = LocalDateTime.now();
+        LocalDate current = LocalDate.now();
         ReservationHistory newRevisionHisotry = ReservationHistory.builder()
                 .historyDate(current)
                 .totalNewReservationCount(10)
@@ -54,8 +54,7 @@ class ReservationHistoryRepositoryTest {
         long id = 1L;
         int expectedNewCount = 1;
         int expectedUsedCount = 1;
-        LocalDateTime expectedDate = LocalDate.parse("2023-04-24", DateTimeFormatter.ISO_LOCAL_DATE)
-                .atStartOfDay();
+        LocalDate expectedDate = LocalDate.parse("2023-04-24", DateTimeFormatter.ISO_LOCAL_DATE);
 
         ReservationHistory actual = reservationHistoryRepository.findById(id).orElseThrow();
 
@@ -70,7 +69,7 @@ class ReservationHistoryRepositoryTest {
     @ParameterizedTest
     @MethodSource("initDataOfHistoryDate")
     void testExistsHistoryDate(String date, boolean expected) {
-        LocalDateTime today = LocalDate.parse(date).atStartOfDay();
+        LocalDate today = LocalDate.parse(date);
 
         boolean actual = reservationHistoryRepository.existsByHistoryDate(today);
 
