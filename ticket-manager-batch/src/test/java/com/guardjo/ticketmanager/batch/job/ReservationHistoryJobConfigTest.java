@@ -1,7 +1,9 @@
 package com.guardjo.ticketmanager.batch.job;
 
 import com.guardjo.ticketmanager.batch.config.TestBatchConfig;
+import com.guardjo.ticketmanager.batch.job.tasklet.DailyHistoryDataExportTasklet;
 import com.guardjo.ticketmanager.batch.job.tasklet.ReservationHistoryBatchTasklet;
+import com.guardjo.ticketmanager.batch.job.tasklet.WeeklyHistoryDataExportTasklet;
 import com.guardjo.ticketmanager.batch.repository.ReservationHistoryRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @ContextConfiguration(classes = {
         TestBatchConfig.class,
         ReservationHistoryJobConfig.class,
-        ReservationHistoryBatchTasklet.class
+        ReservationHistoryBatchTasklet.class,
+        DailyHistoryDataExportTasklet.class,
+        WeeklyHistoryDataExportTasklet.class
 })
 class ReservationHistoryJobConfigTest {
     @Autowired
