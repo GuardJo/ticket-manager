@@ -76,6 +76,28 @@ class ReservationHistoryRepositoryTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @DisplayName("특정 날짜의 ReservationHistory 조회 테스트")
+    @Test
+    void testFindByHistoryDate() {
+        LocalDate date = LocalDate.parse("2023-04-24");
+
+        ReservationHistory actual = reservationHistoryRepository.findByHistoryDate(date)
+                .orElseThrow();
+
+        assertThat(actual.getHistoryDate()).isEqualTo(date);
+    }
+
+    @DisplayName("특정 날짜를 기준으로 이전 1주일 간의 ReservationHistoryData 조회 테스트")
+    @Test
+    void testFindWeeklyHistories() {
+        LocalDate to = LocalDate.parse("2023-04-30");
+        LocalDate from = to.minusWeeks(1L);
+
+        List<ReservationHistory> reservationHistories = reservationHistoryRepository.findWeeklyData(from, to);
+
+        assertThat(reservationHistories.size()).isEqualTo(TEST_DATA_SIZE);
+    }
+
     @DisplayName("ReservationHistory 전체 목록 조회 테스트")
     @Test
     void testFindAllReservationHistories() {
