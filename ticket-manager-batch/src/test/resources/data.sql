@@ -30,6 +30,10 @@ values (4, 4, 90, 'READY', '2023-05-01', '2024-05-01');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (1, 1, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
+values (1, 1, 0, '2023-05-02', '2023-05-03');
+insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
+values (2, 2, 0, '2023-05-02', '2023-05-03');
+insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (2, 2, 0, '2023-05-01', '2023-05-02');
 insert into reservation (member_id, ticket_id, used_count, started_time, finished_time)
 values (3, 3, 0, '2023-05-01', '2023-05-02');
@@ -61,3 +65,18 @@ insert into notification (content, kakao_uuid, notification_status, reservation_
 values ('Test Notification3', 'kakao-test-uuid3', 'NOT_SEND', 3);
 insert into notification (content, kakao_uuid, notification_status, reservation_id)
 values ('Test Notification4', 'kakao-test-uuid4', 'NOT_SEND', 4);
+
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-24', 1, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-25', 1, 2);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-26', 2, 3);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-27', 3, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-28', 3, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-29', 3, 1);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-04-30', 0, 0);

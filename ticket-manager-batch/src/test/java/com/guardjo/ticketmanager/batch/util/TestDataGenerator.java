@@ -2,6 +2,7 @@ package com.guardjo.ticketmanager.batch.util;
 
 import com.guardjo.ticketmanager.batch.domain.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,14 @@ public class TestDataGenerator {
                 .status(NotificationStatus.NOT_SEND)
                 .kakaoUUID("test-uuid")
                 .reservation(reservation)
+                .build();
+    }
+
+    public static ReservationHistory reservationHistory() {
+        return ReservationHistory.builder()
+                .historyDate(LocalDate.now())
+                .totalNewReservationCount(10)
+                .totalReservationUsedCount(10)
                 .build();
     }
 }

@@ -99,6 +99,7 @@ class NotificationSendProcessorTest {
         }
     }
 
+    @Disabled
     @DisplayName("실제 외부 API 호출 테스트")
     @SpringBootTest(classes = NotificationSendProcessor.class)
     @AutoConfigureWebClient

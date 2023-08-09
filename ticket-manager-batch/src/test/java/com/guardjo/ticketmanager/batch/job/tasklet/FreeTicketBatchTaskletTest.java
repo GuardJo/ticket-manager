@@ -59,7 +59,7 @@ class FreeTicketBatchTaskletTest {
         then(ticketRepository).should().save(any(Ticket.class));
     }
 
-    @DisplayName("무료 이용궈 일괄 지급 batch 테스트")
+    @DisplayName("무료 이용권 일괄 지급 batch 테스트")
     @Test
     void testTaskletExecute() throws Exception {
         RepeatStatus actual = freeTicketBatchTasklet.execute(stepContribution, chunkContext);
