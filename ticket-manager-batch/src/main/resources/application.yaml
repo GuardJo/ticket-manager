@@ -20,9 +20,14 @@ spring:
     jdbc:
       initialize-schema: always
       isolation-level-for-create: default
+  sql:
+    init:
+      encoding: UTF-8
 kakao-api:
   host: "https://kapi.kakao.com"
   access-token: ${KAKAO_ACCESS_KEY}
+history-data:
+  export-path: ${HISTORY_DATA_DOWNLOAD_PATH}
 ---
 spring:
   datasource:
