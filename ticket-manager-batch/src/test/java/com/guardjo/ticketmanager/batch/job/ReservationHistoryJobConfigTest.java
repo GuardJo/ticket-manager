@@ -5,9 +5,13 @@ import com.guardjo.ticketmanager.batch.job.tasklet.DailyHistoryDataExportTasklet
 import com.guardjo.ticketmanager.batch.job.tasklet.ReservationHistoryBatchTasklet;
 import com.guardjo.ticketmanager.batch.job.tasklet.WeeklyHistoryDataExportTasklet;
 import com.guardjo.ticketmanager.batch.repository.ReservationHistoryRepository;
+import com.guardjo.ticketmanager.batch.util.HistoryDataFileExporter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.batch.core.*;
+import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.JobInstance;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +29,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
         ReservationHistoryJobConfig.class,
         ReservationHistoryBatchTasklet.class,
         DailyHistoryDataExportTasklet.class,
-        WeeklyHistoryDataExportTasklet.class
+        WeeklyHistoryDataExportTasklet.class,
+        HistoryDataFileExporter.class
 })
 class ReservationHistoryJobConfigTest {
     @Autowired
