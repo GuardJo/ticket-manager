@@ -1,7 +1,9 @@
 package com.guardjo.ticketmanager.batch.job.tasklet;
 
 import com.guardjo.ticketmanager.batch.domain.ReservationHistory;
+import com.guardjo.ticketmanager.batch.model.ReservationHistoryExportData;
 import com.guardjo.ticketmanager.batch.repository.ReservationHistoryRepository;
+import com.guardjo.ticketmanager.batch.util.HistoryDataFileExporter;
 import com.guardjo.ticketmanager.batch.util.TestDataGenerator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +24,7 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
+import static org.mockito.BDDMockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DailyHistoryDataExportTaskletTest {
@@ -33,6 +34,8 @@ class DailyHistoryDataExportTaskletTest {
     private StepContribution stepContribution;
     @Mock
     private ChunkContext chunkContext;
+    @Mock
+    private HistoryDataFileExporter historyDataFileExporter;
 
     @InjectMocks
     private DailyHistoryDataExportTasklet dailyHistoryDataExportTasklet;
@@ -51,11 +54,13 @@ class DailyHistoryDataExportTaskletTest {
 
         given(reservationHistoryRepository.findByHistoryDate(eq(LocalDate.parse(date))))
                 .willReturn(Optional.of(reservationHistory));
+        willDoNothing().given(historyDataFileExporter).export(any(ReservationHistoryExportData.class));
     }
 
     @AfterEach
     void tearDown() {
         then(reservationHistoryRepository).should().findByHistoryDate(any(LocalDate.class));
+        then(historyDataFileExporter).should().export(any(ReservationHistoryExportData.class));
     }
 
     @DisplayName("dailyHistoryDataExportTasklet 수행 테스트")
