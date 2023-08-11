@@ -1,7 +1,7 @@
 logging:
   level:
     com.guardjo.ticketmanager: debug
-    org.hibernate.type.descriptor.sql: trace
+    org.hibernate.type.descriptor.sql: debug
 spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/ticket-manager
@@ -20,6 +20,14 @@ spring:
     jdbc:
       initialize-schema: always
       isolation-level-for-create: default
+  sql:
+    init:
+      encoding: UTF-8
+kakao-api:
+  host: "https://kapi.kakao.com"
+  access-token: ${KAKAO_ACCESS_KEY}
+history-data:
+  export-path: ${HISTORY_DATA_DOWNLOAD_PATH}
 ---
 spring:
   datasource:
@@ -38,6 +46,3 @@ spring:
   sql:
     init:
       mode: always
-  batch:
-    jdbc:
-      initialize-schema: never
