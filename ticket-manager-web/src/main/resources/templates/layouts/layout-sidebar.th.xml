@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<thlogic>
+    <attr sel="#ticket-list-view" th:href="@{/tickets}"
+          th:classappend="${#request.requestURI.equals('/tickets')} ? 'active'"/>
+</thlogic>
