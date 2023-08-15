@@ -3,4 +3,5 @@
     <attr sel="#layout-head" th:replace="layouts/layout-head :: common_head(~{::title}, (~{::link} ?: ~{}))"/>
     <attr sel="#layout-sidebar" th:replace="layouts/layout-sidebar :: aside"/>
     <attr sel="#layout-scripts" th:replace="layouts/layout-scripts :: script"/>
+    <attr sel="#layout-list" th:replace="layouts/layout-list :: div"/>
 </thlogic>
