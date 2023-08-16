@@ -4,8 +4,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.guardjo.ticketmanager.batch'
-version = '0.0.1-SNAPSHOT'
+group = 'io.github.guardjo'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '17'
 
 configurations {
