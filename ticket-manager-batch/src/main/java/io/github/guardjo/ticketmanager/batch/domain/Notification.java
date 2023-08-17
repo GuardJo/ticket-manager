@@ -19,6 +19,7 @@ public class Notification extends MetaData {
     @Column(length = 200, nullable = false)
     private String content;
     @Setter
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(name = "notification_status", nullable = false)
     private NotificationStatus status = NotificationStatus.NOT_SEND;

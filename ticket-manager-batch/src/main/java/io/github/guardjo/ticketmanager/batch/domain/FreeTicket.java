@@ -16,6 +16,7 @@ public class FreeTicket extends MetaData{
     @Column(name = "free_ticket_id")
     private Long id;
     @Setter
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private FreeTicketStatus status = FreeTicketStatus.NOT_RECEIVE;
 
