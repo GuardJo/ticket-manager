@@ -1,7 +1,7 @@
 ext {
     PUBLISH_GROUP_ID = 'io.github.guardjo'
     PUBLISH_VERSION = '1.0.0'
-    PUBLISH_ARTIFACT_ID = 'ticker-manager-batch'
+    PUBLISH_ARTIFACT_ID = 'ticket-manager-batch'
     PUBLISH_DESCRIPTION = 'Batch And Data Files in ticket-manager project'
     PUBLISH_URL = 'https://github.com/GuardJo/ticket-manager'
     PUBLISH_LICENSE_NAME = 'The Apache License, Version 2.0'
