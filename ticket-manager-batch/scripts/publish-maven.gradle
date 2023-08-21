@@ -23,6 +23,10 @@ publishing {
             artifactId = PUBLISH_ARTIFACT_ID
             version = PUBLISH_VERSION
 
+            artifact("$buildDir/libs/${project.getName()}-${version}.jar")
+            artifact sourcesJar
+            artifact javadocJar
+
             pom {
                 name = PUBLISH_ARTIFACT_ID
                 description = PUBLISH_DESCRIPTION
