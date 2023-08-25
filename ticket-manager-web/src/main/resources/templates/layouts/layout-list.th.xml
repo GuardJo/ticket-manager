@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <thlogic>
-
+    <attr sel="#ticket-list" th:remove="all-but-first">
+        <attr sel="div[0]" th:remove="tag" th:each="ticket : ${tickets}">
+            <attr sel="input.ticket-expired" th:id="${ticket.ticketId}" th:disabled="${ticket.expired}"/>
+            <attr sel="label[0]" th:for="${ticket.ticketId}">
+                <attr sel="span.ticket-info" th:text="${ticket.programName}"/>
+                <attr sel="span.remaining-count" th:text="${ticket.remainingCount}"/>
+                <attr sel="span.member-name" th:text="${ticket.memberName}"/>
+            </attr>
+        </attr>
+    </attr>
 </thlogic>
