@@ -1,16 +1,25 @@
+buildscript {
+    dependencies {
+        classpath 'io.github.gradle-nexus:publish-plugin:1.2.0'
+    }
+}
+
 plugins {
-    id 'maven-publish'
     id 'java-library'
     id 'org.springframework.boot' version '2.7.16-SNAPSHOT'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.github.guardjo'
-version = '0.0.1-SNAPSHOT'
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+apply from: "$rootDir/scripts/publish-maven.gradle"
+apply from: 'publish.gradle'
+
+group = PUBLISH_GROUP_ID
+archivesBaseName = PUBLISH_ARTIFACT_ID
+version = PUBLISH_VERSION
 
 java {
     sourceCompatibility = '17'
-    targetCompatibility = '17'
 }
 
 configurations {
@@ -23,7 +32,6 @@ repositories {
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://repo.spring.io/snapshot' }
-    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -33,27 +41,6 @@ dependencies {
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.register('sourcesJar', Jar) {
-    archiveClassifier.set("sources")
-}
-
-tasks.register('javadocJar', Jar) {
-    archiveClassifier.set("javadoc")
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-        }
-    }
-}
-
-wrapper {
-    gradleVersion = "8.2.1"
-    distributionType = Wrapper.DistributionType.ALL
 }
 
 tasks.named('test') {
