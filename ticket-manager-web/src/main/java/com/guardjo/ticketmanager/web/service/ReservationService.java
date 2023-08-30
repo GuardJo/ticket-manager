@@ -1,8 +1,8 @@
 package com.guardjo.ticketmanager.web.service;
 
 import com.guardjo.ticketmanager.web.data.TicketViewData;
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationRepository;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

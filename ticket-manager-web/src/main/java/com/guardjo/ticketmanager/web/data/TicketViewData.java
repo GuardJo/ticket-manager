@@ -1,6 +1,6 @@
 package com.guardjo.ticketmanager.web.data;
 
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
 
 import java.time.LocalDateTime;
 

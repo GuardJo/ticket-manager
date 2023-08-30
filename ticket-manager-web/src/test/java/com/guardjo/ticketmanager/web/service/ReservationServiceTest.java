@@ -2,8 +2,8 @@ package com.guardjo.ticketmanager.web.service;
 
 import com.guardjo.ticketmanager.web.data.TicketViewData;
 import com.guardjo.ticketmanager.web.util.TestDataGenerator;
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationRepository;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.repository.ReservationRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

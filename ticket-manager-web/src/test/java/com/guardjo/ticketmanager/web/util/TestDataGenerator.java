@@ -1,10 +1,10 @@
 package com.guardjo.ticketmanager.web.util;
 
 import com.guardjo.ticketmanager.web.data.TicketViewData;
-import io.github.guardjo.ticketmanager.batch.domain.Member;
-import io.github.guardjo.ticketmanager.batch.domain.Program;
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
-import io.github.guardjo.ticketmanager.batch.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.Member;
+import io.github.guardjo.ticketmanager.common.domain.Program;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.domain.Ticket;
 
 import java.time.LocalDateTime;
 
