@@ -5,10 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = {
-        "com.guardjo.ticketmanager.web",
-        "io.github.guardjo.ticketmanager.common"
-})
 @ConfigurationPropertiesScan
 @SpringBootApplication
 public class TicketManagerWebApplication {
