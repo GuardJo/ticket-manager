@@ -20,6 +20,8 @@ spring:
   sql:
     init:
       encoding: UTF-8
+  thymeleaf3:
+    decoupled-logic: true
 ---
 spring:
   datasource:
