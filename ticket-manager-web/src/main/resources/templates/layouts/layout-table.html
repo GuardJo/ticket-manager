@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Layout</title>
+</head>
+<body>
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">이용권 발급 현황</h1>
+            <p class="mb-4">유/무료 이용권 발급 현황</p>
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">이용권 발급 현황</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered dataTable" id="dataTable" width="100%"
+                                           cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                           style="width: 100%;">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 190.775px;">프로그램명
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="UserGroup: activate to sort column ascending"
+                                                style="width: 309.712px;">사용자그룹
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Status: activate to sort column ascending"
+                                                style="width: 137.288px;">발급상태
+                                            </th>
+                                            <th class="sorting sorting_desc" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1"
+                                                colspan="1"
+                                                aria-sort="descending"
+                                                aria-label="Start date: activate to sort column ascending"
+                                                style="width: 129.8px;">생성 일자
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr class="odd">
+                                            <td>프로그램 1</td>
+                                            <td>그룹 A</td>
+                                            <td>미발급</td>
+                                            <td class="sorting_1">2023/08/29</td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td>프로그램 1</td>
+                                            <td>그룹 B</td>
+                                            <td>미발급</td>
+                                            <td class="sorting_1">2023/08/30</td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td>프로그램 2</td>
+                                            <td>그룹 A</td>
+                                            <td>발급</td>
+                                            <td class="sorting_1">2023/08/29</td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td>프로그램 2</td>
+                                            <td>그룹 B</td>
+                                            <td>발급</td>
+                                            <td class="sorting_1">2023/08/30</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright © Your Website 2020</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+</div>
+</body>
+</html>
