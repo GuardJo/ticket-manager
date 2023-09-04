@@ -1,6 +1,7 @@
 package com.guardjo.ticketmanager.web.service;
 
 import com.guardjo.ticketmanager.web.data.UserGroupSimpleData;
+import io.github.guardjo.ticketmanager.common.domain.MemberGroup;
 import io.github.guardjo.ticketmanager.common.repository.MemberGroupRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,5 +29,11 @@ public class MemberGroupService {
         return memberGroupRepository.findAll().stream()
                 .map(UserGroupSimpleData::from)
                 .toList();
+    }
+
+    public MemberGroup findMemberGroup(long groupId) {
+        log.info("Find MemberGroup Entity, groupId = {}", groupId);
+
+        return memberGroupRepository.findById(groupId).orElse(null);
     }
 }
