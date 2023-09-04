@@ -1,12 +1,10 @@
 package com.guardjo.ticketmanager.web.util;
 
 import com.guardjo.ticketmanager.web.data.TicketViewData;
-import io.github.guardjo.ticketmanager.common.domain.Member;
-import io.github.guardjo.ticketmanager.common.domain.Program;
-import io.github.guardjo.ticketmanager.common.domain.Reservation;
-import io.github.guardjo.ticketmanager.common.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TestDataGenerator {
     public static TicketViewData ticketViewData(long id) {
@@ -45,6 +43,22 @@ public class TestDataGenerator {
                 .startedTime(LocalDateTime.now())
                 .member(member())
                 .finishedTime(LocalDateTime.MAX)
+                .build();
+    }
+
+    public static MemberGroup memberGroup() {
+        return MemberGroup.builder()
+                .id(1L)
+                .groupName("testGroup")
+                .members(List.of(member()))
+                .build();
+    }
+
+    public static FreeTicket freeTicket(MemberGroup memberGroup) {
+        return FreeTicket.builder()
+                .id(1L)
+                .ticket(ticket())
+                .memberGroup(memberGroup)
                 .build();
     }
 }
