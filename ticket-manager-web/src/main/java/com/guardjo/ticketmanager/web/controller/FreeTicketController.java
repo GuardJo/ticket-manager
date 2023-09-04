@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RequestMapping("/reservation")
+@RequestMapping("/free-tickets")
 @Controller
 @Slf4j
 public class FreeTicketController {
@@ -37,6 +37,6 @@ public class FreeTicketController {
         modelMap.addAttribute("tickets", ticketSimpleDataList);
         modelMap.addAttribute("userGroups", userGroupSimpleDataList);
 
-        return "/tickets/reservation";
+        return "/tickets/free-tickets";
     }
 }
