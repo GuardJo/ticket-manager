@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<thlogic>
+    <attr sel="#dataTable">
+        <attr sel="tbody[0]" th:remove="all-but-first">
+            <attr sel="tr[0]" th:each="freeTicket : ${freeTickets}">
+                <attr sel="td[0]" th:text="${freeTicket.programName}"/>
+                <attr sel="td[1]" th:text="${freeTicket.userGroupName}"/>
+                <attr sel="td[2]" th:text="${freeTicket.status}"/>
+                <attr sel="td[3]" th:text="${#temporals.format(freeTicket.createdTime, 'yyyy/MM/dd')}"/>
+            </attr>
+        </attr>
+    </attr>
+</thlogic>

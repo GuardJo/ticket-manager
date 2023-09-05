@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<thlogic>
+    <attr sel="#selectTicket" th:remove="all-but-first">
+        <attr sel="div[0]" th:remove="all-but-first" th:each="ticket : ${tickets}">
+            <attr sel="option[0]" th:value="${ticket.ticketId}" th:text="${ticket.programName}"/>
+        </attr>
+    </attr>
+    <attr sel="#selectUserGroup" th:remove="all-but-first">
+        <attr sel="div[0]" th:remove="all-but-first" th:each="userGroup : ${userGroups}">
+            <attr sel="option[0]" th:value="${userGroup.groupId}" th:text="${userGroup.groupName}"/>
+        </attr>
+    </attr>
+</thlogic>

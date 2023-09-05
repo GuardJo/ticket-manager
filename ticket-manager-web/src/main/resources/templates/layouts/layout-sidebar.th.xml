@@ -2,4 +2,6 @@
 <thlogic>
     <attr sel="#ticket-list-view" th:href="@{/tickets}"
           th:classappend="${#request.requestURI.equals('/tickets')} ? 'active'"/>
+    <attr sel="#free-ticket-view" th:href="@{/free-tickets}"
+          th:classappend="${#request.requestURI.equals('/free-tickets')} ? 'active'"/>
 </thlogic>
