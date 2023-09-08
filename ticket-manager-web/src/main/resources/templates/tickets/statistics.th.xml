@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<thlogic>
+    <attr sel="#layout-head" th:replace="layouts/layout-head :: common_head(~{::title}, (~{::link} ?: ~{}))"/>
+    <attr sel="#layout-sidebar" th:replace="layouts/layout-sidebar :: aside"/>
+    <attr sel="#layout-scripts" th:replace="layouts/layout-scripts :: script"/>
+    <attr sel="#layout-chart" th:replace="layouts/layout-chart :: div"/>
+</thlogic>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head id="layout-head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/chart-base.css">
+    <title>이용권 통계</title>
+</head>
+<body class="d-flex">
+<aside id="layout-sidebar"></aside>
+<div id="layout-chart"></div>
+
+<script id="layout-scripts"></script>
+
+<script src="/vendor/chart.js/Chart.min.js"></script>
+<script th:inline="javascript">
+    let chartData = [[${chartData}]];
+</script>
+<script src="/js/chart-area.js"></script>
+<script src="/js/chart-pie.js"></script>
+</body>
+</html>
