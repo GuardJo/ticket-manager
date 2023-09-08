@@ -3,6 +3,7 @@ package com.guardjo.ticketmanager.web.util;
 import com.guardjo.ticketmanager.web.data.TicketViewData;
 import io.github.guardjo.ticketmanager.common.domain.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -59,6 +60,15 @@ public class TestDataGenerator {
                 .id(1L)
                 .ticket(ticket())
                 .memberGroup(memberGroup)
+                .build();
+    }
+
+    public static ReservationHistory reservationHistory(long id) {
+        return ReservationHistory.builder()
+                .id(1L)
+                .historyDate(LocalDate.now().plusDays(id))
+                .totalNewReservationCount(1)
+                .totalReservationUsedCount(3)
                 .build();
     }
 }
