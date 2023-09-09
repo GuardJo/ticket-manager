@@ -76,4 +76,15 @@ public class FreeTicketBatchTasklet implements Tasklet {
                 .program(ticketInfo.getProgram())
                 .build();
     }
+
+    private Ticket newTicket(Program program, Member member, LocalDateTime now) {
+        return Ticket.builder()
+                .remainingCount(program.getCount() != null ? program.getCount() : program.getExpirationPeriod())
+                .status(TicketStatus.READY)
+                .startedTime(now)
+                .expiredTime(now.plusYears(1L))
+                .member(member)
+                .program(program)
+                .build();
+    }
 }

@@ -1,10 +1,7 @@
 package io.github.guardjo.ticketmanager.common.repository;
 
 import io.github.guardjo.ticketmanager.common.config.JpaConfig;
-import io.github.guardjo.ticketmanager.common.domain.FreeTicket;
-import io.github.guardjo.ticketmanager.common.domain.FreeTicketStatus;
-import io.github.guardjo.ticketmanager.common.domain.MemberGroup;
-import io.github.guardjo.ticketmanager.common.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,7 +32,7 @@ class FreeTicketRepositoryTest {
         FreeTicket expected = FreeTicket.builder()
                 .status(FreeTicketStatus.NOT_RECEIVE)
                 .memberGroup(MemberGroup.builder().id(1L).build())
-                .ticket(Ticket.builder().id(1L).build())
+                .program(Program.builder().id(1L).build())
                 .build();
 
         FreeTicket actual = freeTicketRepository.save(expected);

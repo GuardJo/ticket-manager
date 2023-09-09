@@ -28,4 +28,8 @@ public class Program extends MetaData {
     @OrderBy("id")
     @ToString.Exclude
     private Collection<Ticket> tickets;
+    @OneToMany(mappedBy = "program", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OrderBy("id")
+    @ToString.Exclude
+    private Collection<FreeTicket> freeTickets;
 }

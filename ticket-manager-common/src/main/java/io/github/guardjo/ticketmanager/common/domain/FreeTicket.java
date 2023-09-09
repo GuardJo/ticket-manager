@@ -21,9 +21,9 @@ public class FreeTicket extends MetaData {
     private FreeTicketStatus status = FreeTicketStatus.NOT_RECEIVE;
 
     @ManyToOne
-    @JoinColumn(name = "ticket_id")
-    private Ticket ticket;
+    @JoinColumn(name = "program_id", nullable = false)
+    private Program program;
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", nullable = false)
     private MemberGroup memberGroup;
 }

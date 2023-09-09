@@ -10,6 +10,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
@@ -26,7 +28,7 @@ class ReservationHistoryRepositoryTest {
     @Autowired
     private ReservationHistoryRepository reservationHistoryRepository;
 
-    private final static long TEST_DATA_SIZE = 7L;
+    private final static long TEST_DATA_SIZE = 8L;
 
     @DisplayName("신규 ReservationHistory 저장 테스트")
     @Test
@@ -91,10 +93,24 @@ class ReservationHistoryRepositoryTest {
     void testFindWeeklyHistories() {
         LocalDate to = LocalDate.parse("2023-04-30");
         LocalDate from = to.minusWeeks(1L);
+        long weekSize = 7;
 
         List<ReservationHistory> reservationHistories = reservationHistoryRepository.findWeeklyData(from, to);
 
-        assertThat(reservationHistories.size()).isEqualTo(TEST_DATA_SIZE);
+        assertThat(reservationHistories.size()).isEqualTo(weekSize);
+    }
+
+    @DisplayName("저장된 ReservationHistory 중 가장 최근 일주일치 조회 테스트")
+    @Test
+    void testFindRecentWeeklyHistories() {
+        int weekSize = 7;
+
+        Pageable pageable = PageRequest.of(0, weekSize);
+
+        List<ReservationHistory> reservationHistories = reservationHistoryRepository.findRecentlyData(pageable);
+
+        assertThat(reservationHistories.size()).isEqualTo(weekSize);
+        assertThat(reservationHistories.get(0).getHistoryDate()).isEqualTo("2023-05-01");
     }
 
     @DisplayName("ReservationHistory 전체 목록 조회 테스트")
