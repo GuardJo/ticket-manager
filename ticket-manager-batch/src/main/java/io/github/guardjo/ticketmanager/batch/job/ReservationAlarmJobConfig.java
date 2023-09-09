@@ -51,6 +51,7 @@ public class ReservationAlarmJobConfig {
                 .reader(reservationJpaPagingItemReader())
                 .processor(notificationCreateProcessor())
                 .writer(notificationJpaItemWriter())
+                .allowStartIfComplete(true)
                 .build();
     }
 
@@ -62,6 +63,7 @@ public class ReservationAlarmJobConfig {
                 .processor(notificationSendProcessor)
                 .writer(notificationJpaItemWriter())
                 .taskExecutor(new SimpleAsyncTaskExecutor())
+                .allowStartIfComplete(true)
                 .build();
     }
 

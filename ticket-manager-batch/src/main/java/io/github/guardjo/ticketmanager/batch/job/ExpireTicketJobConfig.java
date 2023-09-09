@@ -43,6 +43,7 @@ public class ExpireTicketJobConfig {
                 .reader(ticketItemReader())
                 .processor(ticketItemProcessor())
                 .writer(ticketItemWriter())
+                .allowStartIfComplete(true)
                 .build();
     }
 

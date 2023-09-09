@@ -10,6 +10,7 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.job.builder.FlowBuilder;
 import org.springframework.batch.core.job.flow.Flow;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -46,6 +47,7 @@ public class ReservationHistoryJobConfig {
                 .start(initReservationHistoryFlow)
                 .next(multiFlowReservationHistoryExportFlow)
                 .build()
+                .incrementer(new RunIdIncrementer())
                 .build();
     }
 
@@ -53,6 +55,7 @@ public class ReservationHistoryJobConfig {
     public Step initReservationHistoryStep() {
         return stepBuilderFactory.get("initReservationHistoryStep")
                 .tasklet(reservationHistoryBatchTasklet)
+                .allowStartIfComplete(true)
                 .build();
     }
 
@@ -60,6 +63,7 @@ public class ReservationHistoryJobConfig {
     public Step dailyReservationHistoryExportStep() {
         return stepBuilderFactory.get("dailyReservationHistoryExportStep")
                 .tasklet(dailyHistoryDataExportTasklet)
+                .allowStartIfComplete(true)
                 .build();
     }
 
@@ -67,6 +71,7 @@ public class ReservationHistoryJobConfig {
     public Step weeklyReservationHistoryExportStep() {
         return stepBuilderFactory.get("weeklyReservationHistoryExportStep")
                 .tasklet(weeklyHistoryDataExportTasklet)
+                .allowStartIfComplete(true)
                 .build();
     }
 }

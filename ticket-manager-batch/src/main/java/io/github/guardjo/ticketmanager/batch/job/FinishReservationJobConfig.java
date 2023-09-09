@@ -51,6 +51,7 @@ public class FinishReservationJobConfig {
                 .reader(finishedReservationReader())
                 .processor(asyncFinishedReservationProcessor())
                 .writer(asyncUpdateTicketWriter())
+                .allowStartIfComplete(true)
                 .build();
     }
 
