@@ -1,11 +1,11 @@
 package io.github.guardjo.ticketmanager.batch.job.tasklet;
 
-import io.github.guardjo.ticketmanager.batch.domain.FreeTicket;
-import io.github.guardjo.ticketmanager.batch.domain.FreeTicketStatus;
-import io.github.guardjo.ticketmanager.batch.domain.MemberGroup;
-import io.github.guardjo.ticketmanager.batch.domain.Ticket;
-import io.github.guardjo.ticketmanager.batch.repository.FreeTicketRepository;
-import io.github.guardjo.ticketmanager.batch.repository.TicketRepository;
+import io.github.guardjo.ticketmanager.common.domain.FreeTicket;
+import io.github.guardjo.ticketmanager.common.domain.FreeTicketStatus;
+import io.github.guardjo.ticketmanager.common.domain.MemberGroup;
+import io.github.guardjo.ticketmanager.common.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.repository.FreeTicketRepository;
+import io.github.guardjo.ticketmanager.common.repository.TicketRepository;
 import io.github.guardjo.ticketmanager.batch.util.TestDataGenerator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

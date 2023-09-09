@@ -1,9 +1,9 @@
 package io.github.guardjo.ticketmanager.batch.job.tasklet;
 
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
-import io.github.guardjo.ticketmanager.batch.domain.ReservationHistory;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationHistoryRepository;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationRepository;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.domain.ReservationHistory;
+import io.github.guardjo.ticketmanager.common.repository.ReservationHistoryRepository;
+import io.github.guardjo.ticketmanager.common.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;

@@ -1,7 +1,7 @@
 package io.github.guardjo.ticketmanager.batch.job;
 
-import io.github.guardjo.ticketmanager.batch.domain.Ticket;
-import io.github.guardjo.ticketmanager.batch.domain.TicketStatus;
+import io.github.guardjo.ticketmanager.common.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.TicketStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

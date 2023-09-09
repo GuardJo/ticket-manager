@@ -2,15 +2,15 @@ package io.github.guardjo.ticketmanager.batch.model.kakao;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import io.github.guardjo.ticketmanager.batch.domain.Notification;
+import io.github.guardjo.ticketmanager.common.domain.Notification;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public record KakaoMessageTemplate(
-    String objectType,
-    String title,
-    String text,
-    KakaoMessageLink link,
-    String buttonTitle
+        String objectType,
+        String title,
+        String text,
+        KakaoMessageLink link,
+        String buttonTitle
 ) {
     public static KakaoMessageTemplate of(String text, KakaoMessageLink link) {
         return new KakaoMessageTemplate("text", "예약 알림", text, link, "예약 확인");
@@ -22,7 +22,7 @@ public record KakaoMessageTemplate(
                 "https://developers.kakao.com",
                 "https://developers.kakao.com"
         );
-        
+
         return KakaoMessageTemplate.of(notification.getContent(), kakaoMessageLink);
     }
 }

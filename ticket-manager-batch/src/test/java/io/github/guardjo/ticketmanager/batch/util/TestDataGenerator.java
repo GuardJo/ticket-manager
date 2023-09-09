@@ -1,6 +1,6 @@
 package io.github.guardjo.ticketmanager.batch.util;
 
-import io.github.guardjo.ticketmanager.batch.domain.*;
+import io.github.guardjo.ticketmanager.common.domain.*;
 import io.github.guardjo.ticketmanager.batch.model.JobExecuteRequest;
 import org.springframework.integration.support.PropertiesBuilder;
 

@@ -2,12 +2,12 @@ package io.github.guardjo.ticketmanager.batch.job;
 
 import io.github.guardjo.ticketmanager.batch.config.TestBatchConfig;
 import io.github.guardjo.ticketmanager.batch.config.TestWebClientConfig;
-import io.github.guardjo.ticketmanager.batch.domain.Member;
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
-import io.github.guardjo.ticketmanager.batch.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.Member;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.domain.Ticket;
 import io.github.guardjo.ticketmanager.batch.job.processor.NotificationSendProcessor;
-import io.github.guardjo.ticketmanager.batch.repository.NotificationRepository;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationRepository;
+import io.github.guardjo.ticketmanager.common.repository.NotificationRepository;
+import io.github.guardjo.ticketmanager.common.repository.ReservationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

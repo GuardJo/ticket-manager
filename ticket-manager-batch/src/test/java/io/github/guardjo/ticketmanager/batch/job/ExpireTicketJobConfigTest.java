@@ -1,11 +1,11 @@
 package io.github.guardjo.ticketmanager.batch.job;
 
 import io.github.guardjo.ticketmanager.batch.config.TestBatchConfig;
-import io.github.guardjo.ticketmanager.batch.domain.Member;
-import io.github.guardjo.ticketmanager.batch.domain.Program;
-import io.github.guardjo.ticketmanager.batch.domain.Ticket;
-import io.github.guardjo.ticketmanager.batch.domain.TicketStatus;
-import io.github.guardjo.ticketmanager.batch.repository.TicketRepository;
+import io.github.guardjo.ticketmanager.common.domain.Member;
+import io.github.guardjo.ticketmanager.common.domain.Program;
+import io.github.guardjo.ticketmanager.common.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.TicketStatus;
+import io.github.guardjo.ticketmanager.common.repository.TicketRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

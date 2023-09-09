@@ -1,10 +1,10 @@
 package io.github.guardjo.ticketmanager.batch.job;
 
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
-import io.github.guardjo.ticketmanager.batch.domain.Ticket;
-import io.github.guardjo.ticketmanager.batch.domain.TicketStatus;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationRepository;
-import io.github.guardjo.ticketmanager.batch.repository.TicketRepository;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.TicketStatus;
+import io.github.guardjo.ticketmanager.common.repository.ReservationRepository;
+import io.github.guardjo.ticketmanager.common.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -47,7 +47,7 @@ public class FinishReservationJobConfig {
     @Bean
     public Step finishedReservationStep() {
         return stepBuilderFactory.get("finishedReservationStep")
-                .<Reservation, Future<Ticket>> chunk(CHUNK_SIZE)
+                .<Reservation, Future<Ticket>>chunk(CHUNK_SIZE)
                 .reader(finishedReservationReader())
                 .processor(asyncFinishedReservationProcessor())
                 .writer(asyncUpdateTicketWriter())
