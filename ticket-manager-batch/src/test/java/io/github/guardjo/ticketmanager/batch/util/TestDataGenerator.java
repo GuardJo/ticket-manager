@@ -1,11 +1,14 @@
 package io.github.guardjo.ticketmanager.batch.util;
 
 import io.github.guardjo.ticketmanager.batch.domain.*;
+import io.github.guardjo.ticketmanager.batch.model.JobExecuteRequest;
+import org.springframework.integration.support.PropertiesBuilder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class TestDataGenerator {
     public static Member member(long id, String name) {
@@ -77,5 +80,9 @@ public class TestDataGenerator {
                 .totalNewReservationCount(10)
                 .totalReservationUsedCount(10)
                 .build();
+    }
+
+    public static JobExecuteRequest jobExecuteRequest() {
+        return JobExecuteRequest.of("testJob", new PropertiesBuilder().put("from", "2023-03-03").get());
     }
 }
