@@ -20,6 +20,8 @@ spring:
     jdbc:
       initialize-schema: always
       isolation-level-for-create: default
+    job:
+      enabled: false
   sql:
     init:
       encoding: UTF-8
@@ -28,6 +30,8 @@ kakao-api:
   access-token: ${KAKAO_ACCESS_KEY}
 history-data:
   export-path: ${HISTORY_DATA_DOWNLOAD_PATH}
+server:
+  port: 8081
 ---
 spring:
   datasource:
