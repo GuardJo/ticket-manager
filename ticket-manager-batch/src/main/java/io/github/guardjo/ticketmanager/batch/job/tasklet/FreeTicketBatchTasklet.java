@@ -1,8 +1,8 @@
 package io.github.guardjo.ticketmanager.batch.job.tasklet;
 
-import io.github.guardjo.ticketmanager.batch.domain.*;
-import io.github.guardjo.ticketmanager.batch.repository.FreeTicketRepository;
-import io.github.guardjo.ticketmanager.batch.repository.TicketRepository;
+import io.github.guardjo.ticketmanager.common.domain.*;
+import io.github.guardjo.ticketmanager.common.repository.FreeTicketRepository;
+import io.github.guardjo.ticketmanager.common.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;

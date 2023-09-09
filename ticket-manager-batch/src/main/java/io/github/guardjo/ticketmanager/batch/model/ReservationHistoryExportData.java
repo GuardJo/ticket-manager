@@ -1,6 +1,6 @@
 package io.github.guardjo.ticketmanager.batch.model;
 
-import io.github.guardjo.ticketmanager.batch.domain.ReservationHistory;
+import io.github.guardjo.ticketmanager.common.domain.ReservationHistory;
 
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;

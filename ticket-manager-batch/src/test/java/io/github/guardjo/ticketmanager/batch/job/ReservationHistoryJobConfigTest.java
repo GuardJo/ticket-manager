@@ -4,7 +4,7 @@ import io.github.guardjo.ticketmanager.batch.config.TestBatchConfig;
 import io.github.guardjo.ticketmanager.batch.job.tasklet.DailyHistoryDataExportTasklet;
 import io.github.guardjo.ticketmanager.batch.job.tasklet.ReservationHistoryBatchTasklet;
 import io.github.guardjo.ticketmanager.batch.job.tasklet.WeeklyHistoryDataExportTasklet;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationHistoryRepository;
+import io.github.guardjo.ticketmanager.common.repository.ReservationHistoryRepository;
 import io.github.guardjo.ticketmanager.batch.util.HistoryDataFileExporter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

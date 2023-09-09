@@ -1,8 +1,8 @@
 package io.github.guardjo.ticketmanager.batch.job.processor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.guardjo.ticketmanager.batch.domain.Notification;
-import io.github.guardjo.ticketmanager.batch.domain.NotificationStatus;
+import io.github.guardjo.ticketmanager.common.domain.Notification;
+import io.github.guardjo.ticketmanager.common.domain.NotificationStatus;
 import io.github.guardjo.ticketmanager.batch.model.constant.KakaoApiConstants;
 import io.github.guardjo.ticketmanager.batch.model.kakao.KakaoMessageSendResponse;
 import io.github.guardjo.ticketmanager.batch.model.kakao.KakaoMessageTemplate;

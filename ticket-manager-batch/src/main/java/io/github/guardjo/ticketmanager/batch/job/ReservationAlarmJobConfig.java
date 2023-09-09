@@ -1,8 +1,8 @@
 package io.github.guardjo.ticketmanager.batch.job;
 
-import io.github.guardjo.ticketmanager.batch.domain.Notification;
-import io.github.guardjo.ticketmanager.batch.domain.NotificationStatus;
-import io.github.guardjo.ticketmanager.batch.domain.Reservation;
+import io.github.guardjo.ticketmanager.common.domain.Notification;
+import io.github.guardjo.ticketmanager.common.domain.NotificationStatus;
+import io.github.guardjo.ticketmanager.common.domain.Reservation;
 import io.github.guardjo.ticketmanager.batch.job.processor.NotificationSendProcessor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -51,6 +51,7 @@ public class ReservationAlarmJobConfig {
                 .reader(reservationJpaPagingItemReader())
                 .processor(notificationCreateProcessor())
                 .writer(notificationJpaItemWriter())
+                .allowStartIfComplete(true)
                 .build();
     }
 
@@ -62,6 +63,7 @@ public class ReservationAlarmJobConfig {
                 .processor(notificationSendProcessor)
                 .writer(notificationJpaItemWriter())
                 .taskExecutor(new SimpleAsyncTaskExecutor())
+                .allowStartIfComplete(true)
                 .build();
     }
 

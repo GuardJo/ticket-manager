@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAutoConfiguration
 @EnableBatchProcessing
 @EnableJpaAuditing
-@EnableJpaRepositories("io.github.guardjo.ticketmanager.batch.repository")
+@EnableJpaRepositories("io.github.guardjo.ticketmanager.common.repository")
 @EnableTransactionManagement
-@EntityScan("io.github.guardjo.ticketmanager.batch.domain")
+@EntityScan("io.github.guardjo.ticketmanager.common.domain")
 public class TestBatchConfig {
 }

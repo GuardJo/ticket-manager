@@ -2,8 +2,8 @@ package io.github.guardjo.ticketmanager.batch.job.processor;
 
 import io.github.guardjo.ticketmanager.batch.config.KakaoApiProperty;
 import io.github.guardjo.ticketmanager.batch.config.KakaoConfig;
-import io.github.guardjo.ticketmanager.batch.domain.Notification;
-import io.github.guardjo.ticketmanager.batch.domain.NotificationStatus;
+import io.github.guardjo.ticketmanager.common.domain.Notification;
+import io.github.guardjo.ticketmanager.common.domain.NotificationStatus;
 import io.github.guardjo.ticketmanager.batch.model.constant.KakaoApiConstants;
 import io.github.guardjo.ticketmanager.batch.model.kakao.KakaoMessageSendResponse;
 import io.github.guardjo.ticketmanager.batch.util.TestDataGenerator;

@@ -1,8 +1,8 @@
 package io.github.guardjo.ticketmanager.batch.job.tasklet;
 
-import io.github.guardjo.ticketmanager.batch.domain.ReservationHistory;
+import io.github.guardjo.ticketmanager.common.domain.ReservationHistory;
 import io.github.guardjo.ticketmanager.batch.model.ReservationHistoryExportData;
-import io.github.guardjo.ticketmanager.batch.repository.ReservationHistoryRepository;
+import io.github.guardjo.ticketmanager.common.repository.ReservationHistoryRepository;
 import io.github.guardjo.ticketmanager.batch.util.HistoryDataFileExporter;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.beans.factory.annotation.Value;
