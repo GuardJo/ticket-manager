@@ -58,7 +58,7 @@ public class TestDataGenerator {
     public static FreeTicket freeTicket(MemberGroup memberGroup) {
         return FreeTicket.builder()
                 .id(1L)
-                .ticket(ticket())
+                .program(program())
                 .memberGroup(memberGroup)
                 .build();
     }

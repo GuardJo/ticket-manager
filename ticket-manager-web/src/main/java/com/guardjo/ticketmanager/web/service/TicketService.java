@@ -22,10 +22,11 @@ public class TicketService {
      *
      * @return TicketSimpleData 목록
      */
+    @Deprecated
     @Transactional(readOnly = true)
     public List<TicketSimpleData> findAllTicketSimpleDataList() {
         log.info("Find All TicketSimpleData List");
-        
+
         return ticketRepository.findAll().stream()
                 .map(TicketSimpleData::from)
                 .toList();
@@ -37,6 +38,7 @@ public class TicketService {
      * @param ticketId 이용권 식별키
      * @return Ticket Entity
      */
+    @Deprecated
     @Transactional(readOnly = true)
     public Ticket findTicket(long ticketId) {
         log.info("Find Ticket Entity, ticketId = {}", ticketId);

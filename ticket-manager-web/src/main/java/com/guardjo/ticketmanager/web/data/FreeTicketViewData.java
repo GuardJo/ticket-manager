@@ -19,10 +19,10 @@ public record FreeTicketViewData(
     public static FreeTicketViewData from(FreeTicket freeTicket) {
         return FreeTicketViewData.create(
                 freeTicket.getId(),
-                freeTicket.getTicket().getProgram().getName(),
+                freeTicket.getProgram().getName(),
                 freeTicket.getMemberGroup().getGroupName(),
                 freeTicket.getStatus().name(),
-                freeTicket.getTicket().getStartedTime()
+                freeTicket.getCreatedTime()
         );
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <thlogic>
-    <attr sel="#selectTicket" th:remove="all-but-first">
-        <attr sel="div[0]" th:remove="all-but-first" th:each="ticket : ${tickets}">
-            <attr sel="option[0]" th:value="${ticket.ticketId}" th:text="${ticket.programName}"/>
+    <attr sel="#selectProgram" th:remove="all-but-first">
+        <attr sel="div[0]" th:remove="all-but-first" th:each="program : ${programs}">
+            <attr sel="option[0]" th:value="${program.programId}" th:text="${program.programName}"/>
         </attr>
     </attr>
     <attr sel="#selectUserGroup" th:remove="all-but-first">

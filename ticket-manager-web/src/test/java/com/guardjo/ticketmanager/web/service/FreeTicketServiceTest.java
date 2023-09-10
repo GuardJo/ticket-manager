@@ -4,6 +4,7 @@ import com.guardjo.ticketmanager.web.data.FreeTicketViewData;
 import com.guardjo.ticketmanager.web.util.TestDataGenerator;
 import io.github.guardjo.ticketmanager.common.domain.FreeTicket;
 import io.github.guardjo.ticketmanager.common.domain.MemberGroup;
+import io.github.guardjo.ticketmanager.common.domain.Program;
 import io.github.guardjo.ticketmanager.common.domain.Ticket;
 import io.github.guardjo.ticketmanager.common.repository.FreeTicketRepository;
 import io.github.guardjo.ticketmanager.common.repository.MemberGroupRepository;
@@ -58,13 +59,13 @@ class FreeTicketServiceTest {
     @DisplayName("신규 무료 이용권 발급 정보 저장 테스트")
     @Test
     void testSaveNewFreeTickets() {
-        Ticket ticket = TestDataGenerator.ticket();
+        Program program = TestDataGenerator.program();
         MemberGroup memberGroup = TestDataGenerator.memberGroup();
         FreeTicket expected = TestDataGenerator.freeTicket(memberGroup);
 
         given(freeTicketRepository.save(any(FreeTicket.class))).willReturn(expected);
 
-        assertThatCode(() -> freeTicketService.saveNewFreeTickets(ticket, memberGroup))
+        assertThatCode(() -> freeTicketService.saveNewFreeTickets(program, memberGroup))
                 .doesNotThrowAnyException();
 
         then(freeTicketRepository).should().save(any(FreeTicket.class));

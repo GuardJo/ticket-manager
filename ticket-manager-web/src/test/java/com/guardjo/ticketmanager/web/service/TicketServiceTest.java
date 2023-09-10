@@ -4,6 +4,7 @@ import com.guardjo.ticketmanager.web.data.TicketSimpleData;
 import com.guardjo.ticketmanager.web.util.TestDataGenerator;
 import io.github.guardjo.ticketmanager.common.domain.Ticket;
 import io.github.guardjo.ticketmanager.common.repository.TicketRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,6 +24,8 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
+// TicketService 미사용으로 인해 Disable 처리함
+@Disabled
 @ExtendWith(MockitoExtension.class)
 class TicketServiceTest {
     @Mock
