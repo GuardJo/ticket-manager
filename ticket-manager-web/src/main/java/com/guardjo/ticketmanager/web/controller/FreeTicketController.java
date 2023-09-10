@@ -1,12 +1,15 @@
 package com.guardjo.ticketmanager.web.controller;
 
 import com.guardjo.ticketmanager.web.data.FreeTicketViewData;
+import com.guardjo.ticketmanager.web.data.ProgramSimpleData;
 import com.guardjo.ticketmanager.web.data.TicketSimpleData;
 import com.guardjo.ticketmanager.web.data.UserGroupSimpleData;
 import com.guardjo.ticketmanager.web.service.FreeTicketService;
 import com.guardjo.ticketmanager.web.service.MemberGroupService;
+import com.guardjo.ticketmanager.web.service.ProgramService;
 import com.guardjo.ticketmanager.web.service.TicketService;
 import io.github.guardjo.ticketmanager.common.domain.MemberGroup;
+import io.github.guardjo.ticketmanager.common.domain.Program;
 import io.github.guardjo.ticketmanager.common.domain.Ticket;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,32 +29,32 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FreeTicketController {
     private final FreeTicketService freeTicketService;
-    private final TicketService ticketService;
+    private final ProgramService programService;
     private final MemberGroupService memberGroupService;
 
     @GetMapping
     public String getFreeTickets(ModelMap modelMap) {
         List<FreeTicketViewData> freeTicketViewDataList = freeTicketService.findFreeTicketViewDataList();
-        List<TicketSimpleData> ticketSimpleDataList = ticketService.findAllTicketSimpleDataList();
+        List<ProgramSimpleData> programSimpleData = programService.getProgramSimpleDataList();
         List<UserGroupSimpleData> userGroupSimpleDataList = memberGroupService.findAllUserGroupSimpleDataList();
 
         modelMap.addAttribute("freeTickets", freeTicketViewDataList);
-        modelMap.addAttribute("tickets", ticketSimpleDataList);
+        modelMap.addAttribute("programs", programSimpleData);
         modelMap.addAttribute("userGroups", userGroupSimpleDataList);
 
         return "/tickets/free-tickets";
     }
 
     @PostMapping
-    public String saveNewFreeTickets(@RequestParam long ticketId, @RequestParam long userGroupId) {
-        log.info("Request new FreeTickets, ticketId = {}, userGroupId = {}", ticketId, userGroupId);
-        Ticket ticket = ticketService.findTicket(ticketId);
+    public String saveNewFreeTickets(@RequestParam long programId, @RequestParam long userGroupId) {
+        log.info("Request new FreeTickets, programId = {}, userGroupId = {}", programId, userGroupId);
+        Program program = programService.getProgram(programId);
         MemberGroup memberGroup = memberGroupService.findMemberGroup(userGroupId);
 
-        if (ticket == null || memberGroup == null) {
+        if (program == null || memberGroup == null) {
             log.warn("Not Found Ticket or MemberGroup");
         } else {
-            freeTicketService.saveNewFreeTickets(ticket, memberGroup);
+            freeTicketService.saveNewFreeTickets(program, memberGroup);
         }
 
         return "redirect:/free-tickets";
