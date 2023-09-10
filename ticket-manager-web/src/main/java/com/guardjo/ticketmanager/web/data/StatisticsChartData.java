@@ -3,6 +3,7 @@ package com.guardjo.ticketmanager.web.data;
 import io.github.guardjo.ticketmanager.common.domain.ReservationHistory;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,7 @@ public record StatisticsChartData(
     }
 
     public static StatisticsChartData from(List<ReservationHistory> reservationHistories) {
+        Collections.reverse(reservationHistories);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         return StatisticsChartData.of(
