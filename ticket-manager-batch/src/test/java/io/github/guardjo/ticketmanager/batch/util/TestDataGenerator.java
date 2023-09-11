@@ -47,10 +47,10 @@ public class TestDataGenerator {
                 .build();
     }
 
-    public static FreeTicket freeTicket(MemberGroup memberGroup, Ticket ticket) {
+    public static FreeTicket freeTicket(MemberGroup memberGroup, Program program) {
         return FreeTicket.builder()
                 .status(FreeTicketStatus.NOT_RECEIVE)
-                .ticket(ticket)
+                .program(program)
                 .memberGroup(memberGroup)
                 .build();
     }
