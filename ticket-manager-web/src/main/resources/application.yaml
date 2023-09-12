@@ -36,3 +36,12 @@ spring:
   config:
     activate:
       on-profile: "test"
+---
+spring:
+  config:
+    activate:
+      on-profile: "release"
+  datasource:
+    url: ${REMOTE_MARIADB_URL}/ticket-manager
+    username: ${REMOTE_MARIADB_USERNAME}
+    password: ${REMOTE_MARIADB_PASSWORD}
