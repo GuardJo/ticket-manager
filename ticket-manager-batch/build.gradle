@@ -10,13 +10,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-apply plugin: 'io.github.gradle-nexus.publish-plugin'
-apply from: "$rootDir/scripts/publish-maven.gradle"
-apply from: 'publish.gradle'
-
-group = PUBLISH_GROUP_ID
-archivesBaseName = PUBLISH_ARTIFACT_ID
-version = PUBLISH_VERSION
+group = 'io.github.guardjo'
+archivesBaseName = 'ticket-manager-batch'
+version = '1.0.1'
 sourceCompatibility = '17'
 
 configurations {
