@@ -54,7 +54,7 @@ values (3, 2);
 insert into member_group_member (member_id, group_id)
 VALUES (4, 2);
 
-insert into free_ticket (status, group_id, ticket_id)
+insert into free_ticket (status, group_id, program_id)
 VALUES ('NOT_RECEIVE', 1, 1);
 
 insert into notification (content, kakao_uuid, notification_status, reservation_id)
@@ -80,3 +80,5 @@ insert into reservation_history (history_date, total_new_reservation_count, tota
 values ('2023-04-29', 3, 1);
 insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
 values ('2023-04-30', 0, 0);
+insert into reservation_history (history_date, total_new_reservation_count, total_reservation_used_count)
+values ('2023-05-01', 1, 0);

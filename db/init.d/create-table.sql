@@ -67,11 +67,11 @@ create table free_ticket
         primary key,
     status         varchar(255) null,
     group_id       bigint       not null,
-    ticket_id      bigint       not null,
+    program_id     bigint       not null,
     created_time   timestamp    not null default CURRENT_TIMESTAMP,
     modified_time  timestamp    not null default CURRENT_TIMESTAMP,
     constraint FKfyu8ksipghxojntd5ol2y0t9g
-        foreign key (ticket_id) references ticket (ticket_id),
+        foreign key (program_id) references program (program_id),
     constraint FKoaumxnmeoevb7ckl3hsn424s5
         foreign key (group_id) references member_group (group_id)
 );

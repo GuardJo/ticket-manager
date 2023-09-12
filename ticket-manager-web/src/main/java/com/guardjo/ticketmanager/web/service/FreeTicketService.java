@@ -3,6 +3,7 @@ package com.guardjo.ticketmanager.web.service;
 import com.guardjo.ticketmanager.web.data.FreeTicketViewData;
 import io.github.guardjo.ticketmanager.common.domain.FreeTicket;
 import io.github.guardjo.ticketmanager.common.domain.MemberGroup;
+import io.github.guardjo.ticketmanager.common.domain.Program;
 import io.github.guardjo.ticketmanager.common.domain.Ticket;
 import io.github.guardjo.ticketmanager.common.repository.FreeTicketRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,13 +37,13 @@ public class FreeTicketService {
     /**
      * 신규 무료 이용권 발급 정보를 저장한다.
      *
-     * @param ticket      무료 이용권으로 발급할 기존 이용권
+     * @param program     무료 이용권으로 발급할 프로그램
      * @param memberGroup 무료 이용권 발급 대상 사용자 그룹
      */
-    public void saveNewFreeTickets(Ticket ticket, MemberGroup memberGroup) {
+    public void saveNewFreeTickets(Program program, MemberGroup memberGroup) {
         FreeTicket newFreeTicket = freeTicketRepository.save(
                 FreeTicket.builder()
-                        .ticket(ticket)
+                        .program(program)
                         .memberGroup(memberGroup)
                         .build()
         );

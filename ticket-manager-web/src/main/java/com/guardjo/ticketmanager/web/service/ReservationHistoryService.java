@@ -5,6 +5,7 @@ import io.github.guardjo.ticketmanager.common.domain.ReservationHistory;
 import io.github.guardjo.ticketmanager.common.repository.ReservationHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationHistoryService {
     private final ReservationHistoryRepository reservationHistoryRepository;
+    private final static int PAGE_SIZE = 7;
 
     /**
      * 현재까지 기록된 일자별 예약 현황 목록을 반환한다.
@@ -26,7 +28,8 @@ public class ReservationHistoryService {
     public StatisticsChartData findStatisticsChartData() {
         log.info("Find StatisticsChartData");
 
-        List<ReservationHistory> reservationHistories = reservationHistoryRepository.findAll();
+        List<ReservationHistory> reservationHistories =
+                reservationHistoryRepository.findRecentlyData(Pageable.ofSize(PAGE_SIZE));
 
         return StatisticsChartData.from(reservationHistories);
     }

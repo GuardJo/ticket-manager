@@ -40,7 +40,4 @@ public class Ticket extends MetaData {
     @ManyToOne(optional = false)
     @JoinColumn(name = "program_id")
     private Program program;
-
-    @OneToMany(mappedBy = "ticket", orphanRemoval = true)
-    private Collection<FreeTicket> freeTickets;
 }

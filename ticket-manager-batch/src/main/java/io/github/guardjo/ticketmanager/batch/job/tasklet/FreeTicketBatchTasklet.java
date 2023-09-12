@@ -48,7 +48,7 @@ public class FreeTicketBatchTasklet implements Tasklet {
         LocalDateTime currentTime = LocalDateTime.now();
 
         return freeTicketRepository.findByStatus(FreeTicketStatus.NOT_RECEIVE).stream()
-                .filter(freeTicket -> freeTicket.getTicket().getStartedTime().isBefore(currentTime))
+                .filter(freeTicket -> freeTicket.getCreatedTime().isBefore(currentTime))
                 .toList();
     }
 
@@ -57,7 +57,7 @@ public class FreeTicketBatchTasklet implements Tasklet {
     }
 
     private void setFreeTicket(Member member, FreeTicket freeTicket) {
-        Ticket newTicket = newTicket(freeTicket.getTicket(), member);
+        Ticket newTicket = newTicket(freeTicket.getProgram(), member, freeTicket.getCreatedTime());
 
         if (member.getTickets().contains(newTicket)) {
             log.warn("Already received FreeTicket");
@@ -66,14 +66,14 @@ public class FreeTicketBatchTasklet implements Tasklet {
         }
     }
 
-    private Ticket newTicket(Ticket ticketInfo, Member member) {
+    private Ticket newTicket(Program program, Member member, LocalDateTime now) {
         return Ticket.builder()
-                .remainingCount(ticketInfo.getRemainingCount())
-                .status(ticketInfo.getStatus())
-                .startedTime(ticketInfo.getStartedTime())
-                .expiredTime(ticketInfo.getExpiredTime())
+                .remainingCount(program.getCount() != null ? program.getCount() : program.getExpirationPeriod())
+                .status(TicketStatus.READY)
+                .startedTime(now)
+                .expiredTime(now.plusYears(1L))
                 .member(member)
-                .program(ticketInfo.getProgram())
+                .program(program)
                 .build();
     }
 }

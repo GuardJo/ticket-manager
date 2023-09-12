@@ -1,9 +1,6 @@
 package io.github.guardjo.ticketmanager.batch.job.tasklet;
 
-import io.github.guardjo.ticketmanager.common.domain.FreeTicket;
-import io.github.guardjo.ticketmanager.common.domain.FreeTicketStatus;
-import io.github.guardjo.ticketmanager.common.domain.MemberGroup;
-import io.github.guardjo.ticketmanager.common.domain.Ticket;
+import io.github.guardjo.ticketmanager.common.domain.*;
 import io.github.guardjo.ticketmanager.common.repository.FreeTicketRepository;
 import io.github.guardjo.ticketmanager.common.repository.TicketRepository;
 import io.github.guardjo.ticketmanager.batch.util.TestDataGenerator;
@@ -20,6 +17,7 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -43,12 +41,15 @@ class FreeTicketBatchTaskletTest {
     @BeforeEach
     void setUp() {
         MemberGroup memberGroup = TestDataGenerator.memberGroup("test group");
-        Ticket ticket = TestDataGenerator.ticket();
-        FreeTicket freeTicket = TestDataGenerator.freeTicket(memberGroup, ticket);
-        ticket.setMember(memberGroup.getMembers().stream().findAny().get());
+        Program program = TestDataGenerator.program();
+        FreeTicket freeTicket = mock(FreeTicket.class);
+
+        given(freeTicket.getProgram()).willReturn(program);
+        given(freeTicket.getMemberGroup()).willReturn(memberGroup);
+        given(freeTicket.getCreatedTime()).willReturn(LocalDateTime.now().minusDays(1L));
 
         given(freeTicketRepository.findByStatus(FreeTicketStatus.NOT_RECEIVE)).willReturn(List.of(freeTicket));
-        given(ticketRepository.save(any(Ticket.class))).willReturn(ticket);
+        given(ticketRepository.save(any(Ticket.class))).willReturn(mock(Ticket.class));
     }
 
     @AfterEach
