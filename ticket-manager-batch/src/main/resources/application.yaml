@@ -32,6 +32,9 @@ history-data:
   export-path: ${HISTORY_DATA_DOWNLOAD_PATH}
 server:
   port: 8081
+springdoc:
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
 ---
 spring:
   datasource:
@@ -50,3 +53,13 @@ spring:
   sql:
     init:
       mode: always
+---
+spring:
+  datasource:
+    url: ${REMOTE_MARIADB_URL}/ticket-manager
+    username: ${REMOTE_MARIADB_USERNAME}
+    password: ${REMOTE_MARIADB_PASSWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+  config:
+    activate:
+      on-profile: "release"

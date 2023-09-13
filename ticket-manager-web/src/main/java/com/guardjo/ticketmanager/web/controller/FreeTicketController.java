@@ -42,7 +42,7 @@ public class FreeTicketController {
         modelMap.addAttribute("programs", programSimpleData);
         modelMap.addAttribute("userGroups", userGroupSimpleDataList);
 
-        return "/tickets/free-tickets";
+        return "tickets/free-tickets";
     }
 
     @PostMapping

@@ -20,6 +20,47 @@
 - 수업 종료 시점 수업을 예약한 이용자들의 이용권 횟수 자동 차감 기능
 - 이용자의 이용 현황 등에 대한 통계 데이터 제공
 
+# 가이드
+
+## 배치 처리 서버 API docs
+
+[배치 프로세스 서버 API docs](https://port-0-ticket-manager-cgw1f2almgb9af4.sel5.cloudtype.app/swagger-ui/index.html)
+
+### 파라미터 필요 요소 요청 예시
+
+```json
+{
+    "jobName" : "initReservationHistoryJob",
+    "jobProperties" : {
+        **"from" : "2023-09-01",
+        "to" : "2023-09-03"**
+    }
+}
+```
+
+- jobParameter 내 from, to 속성 값으로 일정 시간대에 예약 데이터를 이력 데이터화 하여 저장한다.
+
+## 웹페이지
+
+[헬스장 이용권 관리 페이지](https://port-0-ticket-manager-cgw1f2almghf1sz.sel5.cloudtype.app/)
+
+해당 URL을 통해 이용권 관리용 페이지 접근 가능
+
+### 주요 메뉴
+
+[이용권 예약 현황]
+
+- 저장된 이용권 목록 조회
+
+[이용권 발급]
+
+- 사용자 그룹에 따른 무료 이용권 발급 요청 처리
+- 발급 요청 대기중인 무료 이용권 목록 조회
+
+[통계]
+
+- 일자별 예약 수, 취소 수 조회
+
 # 데이터 설계
 
 ![DataArichtecture](/docs/ticket-manager-erd.png)

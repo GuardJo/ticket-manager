@@ -10,13 +10,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-apply plugin: 'io.github.gradle-nexus.publish-plugin'
-apply from: "$rootDir/scripts/publish-maven.gradle"
-apply from: 'publish.gradle'
-
-group = PUBLISH_GROUP_ID
-archivesBaseName = PUBLISH_ARTIFACT_ID
-version = PUBLISH_VERSION
+group = 'io.github.guardjo'
+archivesBaseName = 'ticket-manager-batch'
+version = '1.0.1'
 sourceCompatibility = '17'
 
 configurations {
@@ -37,6 +33,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
     implementation 'io.github.guardjo:ticket-manager-common:1.0.1'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
