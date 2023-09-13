@@ -27,6 +27,6 @@ public class TicketController {
 
         log.info("Request Ticket-List view");
 
-        return "/tickets/list";
+        return "tickets/list";
     }
 }
