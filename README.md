@@ -32,8 +32,8 @@
 {
     "jobName" : "initReservationHistoryJob",
     "jobProperties" : {
-        **"from" : "2023-09-01",
-        "to" : "2023-09-03"**
+        "from" : "2023-09-01",
+        "to" : "2023-09-03"
     }
 }
 ```
